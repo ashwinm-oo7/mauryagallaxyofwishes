@@ -6,15 +6,15 @@ module.exports = {
   // other configurations...
   entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "build"),
     filename: "bundle.js",
-    publicPath: "./",
+    publicPath: "/",
     clean: true,
   },
   mode: "production",
 
   // devtool: process.env.NODE_ENV === "development" ? "source-map" : false,
-  devtool: false,
+  devtool: "source-map",
   plugins: [
     new WebpackObfuscator(
       {
