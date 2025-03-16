@@ -8,7 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: "/",
+    publicPath: "./",
     clean: true,
   },
   mode: "production",
@@ -24,7 +24,7 @@ module.exports = {
         deadCodeInjection: true,
         selfDefending: true,
         debugProtection: true, // Adds protection against debugging
-        domainLock: ["https://maurya-clothing.vercel.app/"], // Optional: lock code to a specific domain
+        domainLock: ["https://mauryagallaxyofwishes.vercel.app/"], // Optional: lock code to a specific domain
       },
       ["excluded_file.js"] // Exclude specific files
     ),
@@ -81,16 +81,9 @@ module.exports = {
         test: /\.js$/,
         enforce: "pre",
         use: ["source-map-loader"],
-        exclude: [/node_modules\/html2pdf.js/],
+        exclude: /node_modules/,
       },
     ],
-  },
-  devServer: {
-    static: path.join(__dirname, "dist"),
-    port: 3000,
-    open: true,
-    hot: true,
-    historyApiFallback: true, // Support SPA routing
   },
 
   // Resolve extensions
