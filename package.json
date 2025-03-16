@@ -40,7 +40,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "postbuild": "javascript-obfuscator build/static/js --output build/static/js --compact true --control-flow-flattening true --dead-code-injection true --debug-protection true"
+    "postbuild": "if exist build/static/js (javascript-obfuscator build/static/js --output build/static/js --compact true --control-flow-flattening true --dead-code-injection true --debug-protection true) else (echo 'Skipping obfuscation: No JS files found')"
   },
   "eslintConfig": {
     "extends": [
