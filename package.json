@@ -40,7 +40,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "postbuild": "if exist build/static/js (javascript-obfuscator build/static/js --output build/static/js --compact true --control-flow-flattening true --dead-code-injection true --debug-protection true) else (echo 'Skipping obfuscation: No JS files found')"
+    "postbuild": "shx test -d build/static/js && javascript-obfuscator build/static/js --output build/static/js --compact true --control-flow-flattening true --dead-code-injection true --debug-protection true || echo 'Skipping obfuscation: No JS files found'"
   },
   "eslintConfig": {
     "extends": [
@@ -70,6 +70,8 @@
     "babel-loader": "^9.2.1",
     "eslint": "^9.22.0",
     "javascript-obfuscator": "^4.1.1",
+    "rimraf": "^5.0.10",
+    "shx": "^0.3.4",
     "terser-webpack-plugin": "^5.3.11",
     "webpack": "^5.98.0",
     "webpack-cli": "^6.0.1",
