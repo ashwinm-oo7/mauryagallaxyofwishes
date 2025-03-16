@@ -365,9 +365,12 @@ const Header = () => {
 
                   <button className="icon-cart">
                     <i
-                      className="pe-7s-shopbag"
+                      // className="pe-7s-shopbag"
                       onClick={() => (window.location.href = `/cart-page`)}
-                    ></i>
+                    >
+                       🛒
+                    </i>
+                    {/* <span onClick={() => (window.location.href = /cart-page)}>  🛒 </span> */}
                     <span className="count-style">{cart && cart.length}</span>
                   </button>
                   <div
