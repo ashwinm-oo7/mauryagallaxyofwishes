@@ -1,11 +1,10 @@
 {
     "builds": [
         { "src": "webpack.config.js", "use": "@vercel/node" },
-        { "src": "dist/**", "use": "@vercel/static" }
-      ],
-      "routes": [
+        { "src": "dist/**", "use": "@vercel/static" },
         { "src": "/(.*)", "dest": "/index.html" }
-      ],    
+      ],
+      
     "headers": [
       {
         "source": "/(.*)",
