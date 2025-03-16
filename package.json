@@ -62,6 +62,9 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-class-properties": "^7.25.9",
+    "@babel/plugin-transform-private-methods": "^7.25.9",
+    "eslint": "^9.22.0",
     "javascript-obfuscator": "^4.1.1",
     "terser-webpack-plugin": "^5.3.11",
     "webpack": "^5.97.1",
