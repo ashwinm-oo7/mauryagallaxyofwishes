@@ -450,21 +450,26 @@ const AddProduct = () => {
       if (response.status === 201) {
         resetForm();
         toast.success("Product added successfully", { autoClose: 2000 });
+        setIsLoading(true);
         console.log(response.status);
       } else if (response.status === 200) {
         toast.success("Product updated successfully", { autoClose: 2000 });
+        setIsLoading(true);
         console.log(response.status);
       } else {
         toast.error("Failed to add product");
         console.log(response.status);
+        setIsLoading(true);
       }
     } catch (error) {
       console.error("Error adding product:", error);
       if (error.response && error.response.status === 400) {
         const errorData = error.response.data.message;
         toast.error(errorData);
+        setIsLoading(true);
       } else {
         toast.error("Failed to add product. Please try again.");
+        setIsLoading(true);
       }
     } finally {
       setIsLoading(true);
