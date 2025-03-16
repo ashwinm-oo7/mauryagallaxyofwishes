@@ -9,6 +9,7 @@ module.exports = {
     clean: true,
   },
   mode: "production",
+  devtool: "source-map", // Recommended for production debugging
 
   module: {
     rules: [
