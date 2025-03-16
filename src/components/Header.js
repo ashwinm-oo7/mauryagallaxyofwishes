@@ -27,6 +27,8 @@ const Header = () => {
   // const [userId, setUserId] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+
+  console.log(process.env.REACT_APP_API_URL);
   useEffect(() => {
     fetchAllCart(setCart, setSelectedSizeVariants);
     const storedUserId = localStorage.getItem("userId");
