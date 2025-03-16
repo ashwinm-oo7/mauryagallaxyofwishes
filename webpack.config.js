@@ -1,5 +1,4 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -9,13 +8,6 @@ module.exports = {
     publicPath: "./",
     clean: true,
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./public/index.html", // Ensure this file exists
-      filename: "index.html",
-    }),
-  ],
-
   mode: "production",
 
   module: {

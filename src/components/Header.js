@@ -27,7 +27,6 @@ const Header = () => {
   // const [userId, setUserId] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
-
   useEffect(() => {
     fetchAllCart(setCart, setSelectedSizeVariants);
     const storedUserId = localStorage.getItem("userId");
