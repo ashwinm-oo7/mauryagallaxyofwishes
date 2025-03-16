@@ -40,7 +40,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "postbuild": "javascript-obfuscator build/static/js --output build/static/js --compact true --control-flow-flattening true --dead-code-injection true --debug-protection true"
+    "postbuild": "javascript-obfuscator ./build/static/js/*.js --output ./build/static/js --compact true --control-flow-flattening true --dead-code-injection true --debug-protection true"
   },
   "eslintConfig": {
     "extends": [
@@ -61,6 +61,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.26.10",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-transform-class-properties": "^7.25.9",
     "@babel/plugin-transform-private-methods": "^7.25.9",
@@ -70,7 +71,7 @@
     "eslint": "^9.22.0",
     "javascript-obfuscator": "^4.1.1",
     "terser-webpack-plugin": "^5.3.11",
-    "webpack": "^5.97.1",
+    "webpack": "^5.98.0",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.0",
     "webpack-obfuscator": "^3.5.1"
