@@ -312,7 +312,7 @@ const ReviewList = () => {
                               image?.type?.startsWith("image") ? (
                                 <img
                                   key={index}
-                                  src={image.dataURL || null}
+                                  src={image.filePath || null}
                                   alt={`user-review-${index + 1}`}
                                   style={{
                                     width: "100px",
@@ -357,7 +357,7 @@ const ReviewList = () => {
                                   >
                                     <source
                                       key={index}
-                                      src={image.dataURL}
+                                      src={image.filePath}
                                       type={image.type}
                                     />
                                   </video>

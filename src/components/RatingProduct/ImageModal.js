@@ -56,7 +56,7 @@ const ImageModal = ({ images, currentIndex, onClose }) => {
             {images[currentIndex]?.type?.startsWith("image") && (
               <img
                 className="image-modal-image"
-                src={images[currentIndex].dataURL || null}
+                src={images[currentIndex].filePath || null}
                 alt="user review"
                 onClick={(e) => e.stopPropagation()}
               />
@@ -64,7 +64,7 @@ const ImageModal = ({ images, currentIndex, onClose }) => {
             {images[currentIndex]?.type?.startsWith("video") && (
               <video controls className="image-modal-image">
                 <source
-                  src={images[currentIndex].dataURL || null}
+                  src={images[currentIndex].filePath || null}
                   type={images[currentIndex].type}
                 />
               </video>

@@ -335,9 +335,7 @@ const HomePage = () => {
                             ? image.color === selectedColors[prod._id]
                             : true
                         )
-                        .filter(
-                          (image) => !image?.dataURL?.startsWith("data:video/")
-                        )
+                        .filter((image) => !image?.type?.startsWith("video"))
                         .map((image, imgIndex) => (
                           <img
                             className={

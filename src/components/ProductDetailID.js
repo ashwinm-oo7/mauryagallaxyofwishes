@@ -38,6 +38,7 @@ const ProductDetailID = ({ product, selectedColorChoose, sizeChoose }) => {
   };
 
   const [mainImage, setMainImage] = useState("");
+  const [mainImageType, setMainImageType] = useState("");
   const [hoveredColor, setHoveredColor] = useState(""); // Add state to track hovered image color
   const [isVisible] = useState(true);
   const [selectedSizes, setSelectedSizes] = useState(
@@ -91,6 +92,7 @@ const ProductDetailID = ({ product, selectedColorChoose, sizeChoose }) => {
 
         if (selectedImage) {
           setMainImage(selectedImage.filePath);
+          setMainImageType(selectedImage);
         }
 
         // Find the matching variant for the selected color
@@ -112,6 +114,7 @@ const ProductDetailID = ({ product, selectedColorChoose, sizeChoose }) => {
         }
       } else {
         setMainImage(product?.productImages[0]?.filePath);
+        setMainImageType(product?.productImages[0]);
         const defaultSizeVariant = product.variants.find(
           (variant) => variant.color === defaultColor
         )?.sizes[0]?.size;
@@ -128,6 +131,7 @@ const ProductDetailID = ({ product, selectedColorChoose, sizeChoose }) => {
 
   const handleImageHover = (imageUrl, color, variantColor) => {
     setMainImage(imageUrl);
+    setMainImageType(imageUrl);
     setHoveredColor(color);
     setSelectedColor(color);
 
@@ -172,6 +176,7 @@ const ProductDetailID = ({ product, selectedColorChoose, sizeChoose }) => {
 
   const handleImageClick = (imageUrl) => {
     setMainImage(imageUrl);
+    setMainImageType(imageUrl);
   };
 
   const variantDiscount = calculateDiscountPercentage(
@@ -289,7 +294,7 @@ const ProductDetailID = ({ product, selectedColorChoose, sizeChoose }) => {
                       hoveredColor.trim().toLowerCase()
                   )
                   .map((image, index) => {
-                    const isVideo = image?.filePath?.startsWith("data:video/");
+                    const isVideo = image?.type?.startsWith("video");
                     return !isVideo ? (
                       <img
                         key={`${index}`}
@@ -327,7 +332,7 @@ const ProductDetailID = ({ product, selectedColorChoose, sizeChoose }) => {
                 onMouseEnter={() => handleZoomToggle(true)}
                 onMouseLeave={() => handleZoomToggle(false)}
               >
-                {mainImage && mainImage?.startsWith("data:video/") ? (
+                {mainImage && mainImageType?.type?.startsWith("video") ? (
                   <video
                     src={mainImage || null}
                     controls // Enables play/pause and other video controls
@@ -337,7 +342,7 @@ const ProductDetailID = ({ product, selectedColorChoose, sizeChoose }) => {
                 ) : (
                   <img src={mainImage} alt={product.productName} />
                 )}
-                {isZoomed && !mainImage?.startsWith("data:video/") && (
+                {isZoomed && !mainImageType?.type?.startsWith("video") && (
                   <img
                     src={mainImage || null}
                     alt={product.productName}
