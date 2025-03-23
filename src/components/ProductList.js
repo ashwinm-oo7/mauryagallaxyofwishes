@@ -256,13 +256,13 @@ const ProductList = () => {
         </div>
       )}
       {!isProcessing && isAdmin ? (
-        <div className="product-list" style={{ padding: "10px" }}>
+        <div className="product-list" style={{ padding: "2px" }}>
           <div className="filter">
             <h2
               style={{
                 display: "flex",
                 alignItems: "center",
-                padding: "10px",
+                padding: "5px",
                 cursor: "pointer",
                 fontSize: "20px",
                 backgroundColor: "#074c96",
@@ -274,7 +274,7 @@ const ProductList = () => {
                 Product List
               </span>
               <input
-                style={{ borderRadius: "30px", maxWidth: "600px" }}
+                style={{ borderRadius: "30px", maxWidth: "500px" }}
                 type="text"
                 placeholder="Search by Category and SubCategory,BrandName then press enter"
                 value={searchInput}

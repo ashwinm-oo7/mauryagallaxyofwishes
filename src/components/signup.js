@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "../css/signup.css";
 import { toast } from "react-toastify";
-import logo from "../icons/maurya.png";
+// import logo from "../icons/maurya.png";
 import {
   FaUserLock,
   FaUser,
@@ -163,10 +163,19 @@ const SignUp = () => {
   if (redirectToHome) {
     return (
       <div>
-        <img
+        {/* <img
           src="https://i.ibb.co/M23HzTF/9-Qgzvh-Logo-Makr.png"
           alt="Redirecting..."
-        />
+        /> */}{" "}
+        <div
+          className="logo-container"
+          style={{ userSelect: "none", textDecoration: "none" }}
+        >
+          <a href="/" className="gow-logo">
+            <span className="gow-main">GOW</span>
+            <span className="gow-full">Galaxy of Wishes</span>
+          </a>
+        </div>
       </div>
     );
   }
@@ -223,7 +232,7 @@ const SignUp = () => {
 
   return (
     <form className="forms">
-      <a href="/">
+      {/* <a href="/">
         <img
           height={100}
           width={100}
@@ -231,7 +240,16 @@ const SignUp = () => {
           alt="Tyre Logo"
           className="tyre-logo"
         />
-      </a>
+      </a> */}
+      <div
+        className="logo-container"
+        style={{ userSelect: "none", textDecoration: "none" }}
+      >
+        <a href="/" className="gow-logo">
+          <span className="gow-main">GOW</span>
+          <span className="gow-full">Galaxy of Wishes</span>
+        </a>
+      </div>
       <h3>
         <FaUserLock style={{ marginRight: "5px" }} />
         Sign Up

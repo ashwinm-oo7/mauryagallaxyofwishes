@@ -361,7 +361,7 @@ const Login = () => {
           </div>
         </div>
       )}
-      <a href="/">
+      {/* <a href="/">
         <img
           height={100}
           width={100}
@@ -369,7 +369,16 @@ const Login = () => {
           alt="Tyre Logo"
           className="tyre-logo"
         />
-      </a>
+      </a> */}
+      <div
+        className="logo-container"
+        style={{ userSelect: "none", textDecoration: "none" }}
+      >
+        <a href="/" className="gow-logo">
+          <span className="gow-main">GOW</span>
+          <span className="gow-full">Galaxy of Wishes</span>
+        </a>
+      </div>
       <h3>
         <FaUserLock style={{ marginRight: "5px" }} />
         Login In

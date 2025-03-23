@@ -193,12 +193,70 @@ h3 select{
   display: none;
 }
 
+/* 88888888888888 Header.css 8888888888888 */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto; /* Adjust height as needed */
+  text-decoration: none;
+
+}
+
+.gow-logo {
+  text-align: center;
+  text-decoration: none !important;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease-in-out;
+  margin-top: 5px;
+}
+
+.gow-logo:hover {
+  transform: scale(1.1);
+}
+
+.gow-main {
+  font-size: 2rem; /* Larger text */
+  font-weight: 800;
+  background: linear-gradient(45deg, #ff8a00, #e52e71);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Gradient text */
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+  text-decoration: none; /* Removes default underline */
+  border-bottom: none; /* Removes any custom underline */
+
+}
+
+.gow-full {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #fff;
+  background: #333;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  text-transform: capitalize;
+}
+
+
 @media only screen and (max-width: 768px) {
   /* General Styles for Mobile */
   body {
     font-size: 14px; /* Adjust base font size for readability */
   }
+  .gow-main {
+    font-size: 1.2rem; /* Smaller font for mobile */
+  }
 
+  .gow-full {
+    font-size: 0.5rem;
+    padding: 1px 5px;
+  }
   .main-menu nav ul li > a {
     font-size: 12px; /* Slightly smaller font size for menu items */
   }
@@ -331,6 +389,25 @@ h3 select{
 }
 
 
+@media (max-width: 480px) {
+  .gow-logo {
+    margin-top: -20px;
+    margin-left: -15px;
+  }
+
+  .gow-main {
+    font-size: 0.9rem; /* Smaller font for mobile */
+  }
+
+  .gow-full {
+    font-size: 0.4rem;
+    padding: 1px 2px;
+  }
+
+  .logo-container {
+    flex-direction: row; /* Stack elements for small screens */
+  }
+}
 
 
 

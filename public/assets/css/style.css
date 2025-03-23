@@ -2360,11 +2360,11 @@ a.default-btn {
 }
 .main-menu nav ul li > a {
   font-size: 15px;
-  color: #555252;
-  font-weight: 500;
+  color: whitesmoke;
+  font-weight: 600;
   letter-spacing: 0.8px;
   display: inline-block;
-  line-height: 94px;
+  line-height: 70px;
 }
 .main-menu nav ul li > a i {
   font-size: 15px;
@@ -2508,7 +2508,7 @@ a.default-btn {
   position: absolute;
   text-align: left;
   top: 190%;
-  width: 125px;
+  width: 100px;
   z-index: 220;
   display: none;
 }

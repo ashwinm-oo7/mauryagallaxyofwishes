@@ -1,3 +1,4 @@
+
 {
   "name": "reactdemo",
   "version": "0.1.0",
@@ -35,12 +36,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "webpack --mode production --devtool source-map",
+    "build": "npx cross-env NODE_ENV=production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "postbuild": "javascript-obfuscator build/static/js --output build/static/js --compact true --control-flow-flattening true --dead-code-injection true --debug-protection true"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -61,13 +61,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "babel-loader": "^9.2.1",
-    "javascript-obfuscator": "^4.1.1",
-    "terser-webpack-plugin": "^5.3.11",
-    "webpack": "^5.98.0",
-    "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.0",
-    "webpack-obfuscator": "^3.5.1"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }

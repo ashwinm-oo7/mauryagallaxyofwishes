@@ -11,12 +11,12 @@ import LZString from "lz-string";
 import {
   handleVariantAddToCart,
   handleRemoveFromCart2Variant,
-  fetchAllCart,
+  // fetchAllCart,
   renderShareOptions,
   renderColorOptions,
 } from "./cartFunctions";
-import logo from "../icons/gow.jpg";
-import ChatBox from "./ChatBox";
+// import logo from "../icons/gow.jpg";
+// import ChatBox from "./ChatBox";
 import { Link } from "react-router-dom";
 // import Product from "./Product.js";
 import {
@@ -31,6 +31,7 @@ import {
   useImageZoom,
 } from "./VariantReusable.js";
 import axiosInstance from "./axiosInstance.js";
+import { useCart } from "./CartContext.js";
 
 const HomePage = () => {
   const imgRef = useRef();
@@ -38,10 +39,12 @@ const HomePage = () => {
   const [cx, setCx] = useState(0);
   const [cy, setCy] = useState(0);
   const { handleImageLoad } = useImageZoom(imgRef, resultRef, setCx, setCy);
+  const { cart, setCart, selectedSizeVariants, setSelectedSizeVariants } =
+    useCart();
 
   const [products, setProducts] = useState([]);
 
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showShareOptions, setShowShareOptions] = useState(null);
 
@@ -52,7 +55,7 @@ const HomePage = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  const [selectedSizeVariants, setSelectedSizeVariants] = useState("");
+  // const [selectedSizeVariants, setSelectedSizeVariants] = useState("");
   const [selectedOptions, setSelectedOptions] = useState({});
   const [isProcessing, setIsProcessing] = useState(false);
   const [userId, setUserId] = useState("");
@@ -61,7 +64,7 @@ const HomePage = () => {
     const initialize = async () => {
       await fetchAllProducts();
       await setVariantAll(products, setSelectedOptions); // Await the async call
-      await fetchAllCart(setCart, setSelectedSizeVariants);
+      // await fetchAllCart(setCart, setSelectedSizeVariants);
 
       const userIds = localStorage.getItem("userId");
       if (userIds) {
@@ -85,7 +88,7 @@ const HomePage = () => {
 
     initialize();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Use an empty dependency array to ensure it runs only once
+  }, [setCart]); // Use an empty dependency array to ensure it runs only once
 
   useEffect(() => {
     if (cart.length > 0 && !userId) {
@@ -658,7 +661,7 @@ const HomePage = () => {
               </div>
             </div>
           )}
-          <ChatBox />
+          {/* <ChatBox /> */}
           <header
             style={{
               position: "fixed",
@@ -742,14 +745,22 @@ const HomePage = () => {
                 <div className="col-lg-2 col-md-4 col-sm-4">
                   <div className="copyright mb-30">
                     <div className="footer-logo">
-                      <a href="/#">
+                      {/* <a href="/#">
                         <img
                           alt=""
-                          // src="https://i.ibb.co/M23HzTF/9-Qgzvh-Logo-Makr.png"
                           src={logo}
                           style={{ width: "120px", height: "auto" }}
                         />
-                      </a>
+                      </a> */}
+                      <div
+                        className="logo-container"
+                        style={{ userSelect: "none", textDecoration: "none" }}
+                      >
+                        <a href="/#" className="gow-logo">
+                          <span className="gow-main">GOW</span>
+                          <span className="gow-full">Galaxy of Wishes</span>
+                        </a>
+                      </div>
                     </div>
                     <p>
                       © 2024 <a href="/#">GOW</a>.<br /> All Rights Reserved

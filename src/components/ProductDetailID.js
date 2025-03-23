@@ -9,7 +9,7 @@ import {
   // handleSizeChange,
   // handleRefreshPage,
   calculateTotal,
-  fetchAllCart,
+  // fetchAllCart,
   // getProductDefaultSize,
   handleVariantAddToCart,
   handleRemoveFromCart2Variant,
@@ -27,6 +27,7 @@ import {
 
 import { FaMinus, FaPlus, FaShareAlt } from "react-icons/fa";
 import ProductPage from "./RatingProduct/ProductPage";
+import { useCart } from "./CartContext.js";
 
 const ProductDetailID = ({ product, selectedColorChoose, sizeChoose }) => {
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 }); // Track mouse position for zoom
@@ -41,10 +42,12 @@ const ProductDetailID = ({ product, selectedColorChoose, sizeChoose }) => {
   const [mainImageType, setMainImageType] = useState("");
   const [hoveredColor, setHoveredColor] = useState(""); // Add state to track hovered image color
   const [isVisible] = useState(true);
-  const [selectedSizes, setSelectedSizes] = useState(
-    JSON.parse(localStorage.getItem("selectedSizes")) || {}
-  );
-  const [cart, setCart] = useState([]);
+  // const [selectedSizes, setSelectedSizes] = useState(
+  //   JSON.parse(localStorage.getItem("selectedSizes")) || {}
+  // );
+  // const [cart, setCart] = useState([]);
+  const { cart, setCart, selectedSizes, setSelectedSizes } = useCart();
+
   const [selectedSizeVariants, setSelectedSizeVariants] = useState(""); // Track selected color today
   const [selectedColor, setSelectedColor] = useState(""); // Track selected color today
   const [quantityPurchased, setQuantityPurchased] = useState("");
@@ -78,9 +81,9 @@ const ProductDetailID = ({ product, selectedColorChoose, sizeChoose }) => {
     quantityPurchased
   );
 
-  useEffect(() => {
-    fetchAllCart(setCart, setSelectedSizes);
-  }, []);
+  // useEffect(() => {
+  //   fetchAllCart(setCart, setSelectedSizes);
+  // }, []);
 
   useEffect(() => {
     if (product.variants && product.variants.length > 0) {

@@ -157,7 +157,7 @@ const ReviewList = () => {
           </div>
         </div>
       ) : reviews.length > 0 ? (
-        <div className="product-list">
+        <div className="product-list" style={{ padding: "5px" }}>
           {productId ? (
             <h2
               className="filter"
@@ -166,6 +166,7 @@ const ReviewList = () => {
                 backgroundColor: "#074c96",
                 color: "#bebaba",
                 fontWeight: "bold",
+                cursor: "pointer",
               }}
             >
               Newest Reviews for Product ${productId}00{" "}

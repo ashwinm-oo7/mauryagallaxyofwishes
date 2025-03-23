@@ -244,6 +244,10 @@
   border: 1px solid #ccc; /* Optional for visual indication */
 
 }
+.small-screen-select{
+  width: 150px;
+margin-bottom: 2px;
+}
 @media only screen and (max-width: 768px) {
   .small-screen-select {
     width: 75px !important;

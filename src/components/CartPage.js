@@ -3,8 +3,8 @@ import { FaTimes, FaMinus, FaPlus, FaTrash, FaSyncAlt } from "react-icons/fa";
 import "../css/Cart/CartPage.css";
 import { SizeChart, SizeGuide, SecureTransaction } from "./OfferDetails";
 import OfferDiscounts from "./OfferDiscounts.js";
-import ChatBox from "./ChatBox";
-import logo from "../icons/maurya.png";
+// import ChatBox from "./ChatBox";
+// import logo from "../icons/maurya.png";
 import { Link, useNavigate } from "react-router-dom";
 
 import {
@@ -13,17 +13,22 @@ import {
   handleRemoveFromCartVariant,
   handleClearCart,
   calculateTotal,
-  fetchAllCart,
+  // fetchAllCart,
   handleVariantAddToCart,
   handleRemoveFromCart2Variant,
 } from "./cartFunctions.js";
 
 import { calculateDiscountPercentage } from "./VariantReusable.js"; // Import reusable functions
+import { useCart } from "./CartContext.js";
 const CartPage = () => {
-  const [cart, setCart] = useState([]);
-  const [selectedSizes, setSelectedSizes] = useState(
-    JSON.parse(localStorage.getItem("selectedSizes")) || {}
-  );
+  // const [cart, setCart] = useState([]);
+  // const [selectedSizes, setSelectedSizes] = useState(
+  //   JSON.parse(localStorage.getItem("selectedSizes")) || {}
+  // );
+  const { cart, setCart, selectedSizeVariants, setSelectedSizeVariants } =
+    useCart();
+  const selectedSizes = selectedSizeVariants;
+  const setSelectedSizes = setSelectedSizeVariants;
   const [isProcessing, setIsProcessing] = useState(false);
   const isVisible = true;
   const navigate = useNavigate(); // Initialize useNavigate
@@ -43,12 +48,13 @@ const CartPage = () => {
   useEffect(() => {
     const userId = localStorage.getItem("userId");
     if (userId) {
-      fetchAllCart(setCart, setSelectedSizes);
+      // fetchAllCart(setCart, setSelectedSizes);
     } else {
-      const storedCart = JSON.parse(localStorage.getItem("carts")) || [];
-      setCart(storedCart);
+      // const storedCart = JSON.parse(localStorage.getItem("carts")) || [];
+      // setCart(storedCart);
     }
     localStorage.removeItem("cart");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log("CartPage", cart);
 
@@ -107,14 +113,12 @@ const CartPage = () => {
         <>
           {isVisible && (
             <div style={{ marginBottom: "10px" }}>
-              <ChatBox />
+              {/* <ChatBox /> */}
               <h2 className="cart-heading">
-                <div className="" title="Maurya" style={{ userSelect: "none" }}>
+                {/* <div className="" title="Maurya" style={{ userSelect: "none" }}>
                   <a href="/">
                     <img
                       src={logo}
-                      // src="https://i.ibb.co/M23HzTF/9-Qgzvh-Logo-Makr.png"
-                      // src="https://i.ibb.co/Vw4b13Y/My-first-design-2.png"
                       alt="My-first-design-2"
                       style={{
                         width: "100px",
@@ -123,10 +127,29 @@ const CartPage = () => {
                       }}
                     />
                   </a>
+                </div> */}
+                <div
+                  className="logo-container"
+                  style={{ userSelect: "none", textDecoration: "none" }}
+                >
+                  <a href="/" className="gow-logo">
+                    <span className="gow-main">GOW</span>
+                    <span className="gow-full">Galaxy of Wishes</span>
+                  </a>
                 </div>
-                <span className="cart-heading-text" title="Cart Item List">
+                <span
+                  style={{ marginLeft: "10px" }}
+                  className="cart-heading-text"
+                  title="Cart Item List"
+                >
                   Cart Items :{" "}
-                  <span className="count-style">{cart.length}</span>
+                  <span className="count-style">
+                    {cart &&
+                      cart.reduce(
+                        (total, item) => total + item.variantQuantity,
+                        0
+                      )}
+                  </span>
                   <FaSyncAlt
                     color="#827f7f"
                     title="Refresh"

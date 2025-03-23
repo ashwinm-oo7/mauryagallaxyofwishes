@@ -7,11 +7,11 @@ import {
   FaInfoCircle,
 } from "react-icons/fa";
 import "../css/home.css";
-import logo from "../icons/gow.jpg";
+// import logo from "../icons/gow.jpg";
 import { Link } from "react-router-dom";
 import {
   calculateTotal,
-  fetchAllCart,
+  // fetchAllCart,
   handleVariantAddToCart,
   handleRemoveFromCart2Variant,
   handleRemoveFromCartVariant,
@@ -19,18 +19,22 @@ import {
 
 import Search from "./Search";
 import { toast } from "react-toastify";
+import { useCart } from "./CartContext.js";
 
 const Header = () => {
-  const [cart, setCart] = useState([]);
+  const { cart, setCart, selectedSizeVariants, setSelectedSizeVariants } =
+    useCart();
+
+  // const [cart, setCart] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [selectedSizes, setSelectedSizeVariants] = useState("");
+  // const [selectedSizes, setSelectedSizeVariants] = useState("");
   // const [userId, setUserId] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   console.log(process.env.REACT_APP_API_URL);
   useEffect(() => {
-    fetchAllCart(setCart, setSelectedSizeVariants);
+    // fetchAllCart(setCart, setSelectedSizeVariants);
     const storedUserId = localStorage.getItem("userId");
     if (storedUserId) {
       fetchUserProfile(storedUserId);
@@ -39,8 +43,9 @@ const Header = () => {
       setCart(storedCart);
       setSelectedProduct(null);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log("Cart", cart, selectedSizes);
+  console.log("selectedSizeVariants", selectedSizeVariants);
   const fetchUserProfile = async (userId) => {
     try {
       const response = await fetch(
@@ -185,24 +190,42 @@ const Header = () => {
   };
 
   return (
-    <div className="" style={{ userSelect: "none", backgroundColor: "white" }}>
-      <header className="header-area header-padding-1 sticky-bar header-res-padding clearfix">
+    <div
+      className=""
+      style={{ userSelect: "none", backgroundColor: "rgb(24 107 154)" }}
+    >
+      <header
+        style={{ backgroundColor: "rgb(24 107 154)" }}
+        className="header-area header-padding-1 sticky-bar header-res-padding clearfix"
+      >
         <div className="container-fluid">
           <div className="row">
             <div className="col-xl-2 col-lg-2 col-md-6 col-4">
-              <div className="logo" title="" style={{ userSelect: "none" }}>
+              {/* <div className="logo" title="" style={{ userSelect: "none" }}>
                 <a href="/">
                   <img
                     className="maurya-logo-header"
                     src={logo}
                     alt="My-first-design-2"
-                    style={{ width: "120px", height: "auto" }}
+                    style={{ width: "120px", height: "88px" }}
                   />
+                </a>
+              </div> */}
+              <div
+                className="logo-container"
+                style={{ userSelect: "none", textDecoration: "none" }}
+              >
+                <a href="/" className="gow-logo">
+                  <span className="gow-main">GOW</span>
+                  <span className="gow-full">Galaxy of Wishes</span>
                 </a>
               </div>
             </div>
             <div className="col-xl-8 col-lg-8 d-none d-lg-block">
-              <div className="main-menu" style={{ backgroundColor: "#e6f6ff" }}>
+              <div
+                className="main-menu"
+                style={{ backgroundColor: "rgb(24 107 154)", color: "white" }}
+              >
                 <nav>
                   <ul>
                     <li>
@@ -279,6 +302,38 @@ const Header = () => {
                       <></>
                     )}
                     <li>
+                      <a href="/#">
+                        <FaUserShield /> Occasion{" "}
+                        <i className="fa fa-angle-down"></i>
+                      </a>
+                      <ul className="submenu">
+                        <li>
+                          <a href="/search-results?query=Handpic Design">
+                            HandPic design
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/search-results?query=BirthDay">Birthday</a>
+                        </li>
+                        <li>
+                          <a href="/search-results?query=FriendShip Day">
+                            FriendShip  Day
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/search-results?query=Festival">Festival</a>
+                        </li>
+                        <li>
+                          <a href="/search-results?query=Wedding">Wedding</a>
+                        </li>
+                        <li>
+                          <a href="/search-results?query=Mothers Day ">
+                            Mother's Day
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
                       <a href="/about">
                         <FaInfoCircle /> About Us
                       </a>
@@ -287,15 +342,23 @@ const Header = () => {
                 </nav>
               </div>
             </div>
-            <div className="col-xl-2 col-lg-2 col-md-6 col-8">
+            <div
+              className="col-xl-2 col-lg-2 col-md-6 col-8"
+              style={{ marginTop: "-8px" }}
+            >
               <div className="header-right-wrap">
                 <div className="header-search-small-display">
                   <Search />
                 </div>
                 {localStorage.getItem("userEmail") ? (
                   <div className="same-style account-satting">
-                    <a className="account-satting-active" href="/#">
-                      <i className="pe-7s-user-female"></i>
+                    <a className="account-satting-active" href="/">
+                      <i
+                        style={{
+                          color: "whitesmoke",
+                        }}
+                        className="pe-7s-user-female"
+                      ></i>
                     </a>
                     <div className="account-dropdown">
                       <ul>
@@ -326,7 +389,10 @@ const Header = () => {
                 ) : (
                   <div className="same-style account-satting">
                     <a className="account-satting-active" href="/#">
-                      <i className="pe-7s-user-female"></i>
+                      <i
+                        style={{ color: "whitesmoke" }}
+                        className="pe-7s-user-female"
+                      ></i>
                     </a>
                     <div className="account-dropdown">
                       <ul>
@@ -366,14 +432,21 @@ const Header = () => {
 
                   <button className="icon-cart">
                     <i
-                      // className="pe-7s-shopbag"
+                      class="fa fa-shopping-cart"
+                      style={{ color: "whitesmoke" }}
                       onClick={() => (window.location.href = `/cart-page`)}
-                    >
-                       🛒
-                    </i>
+                    ></i>
+
                     {/* <span onClick={() => (window.location.href = /cart-page)}>  🛒 </span> */}
-                    <span className="count-style">{cart && cart.length}</span>
+                    <span className="count-style">
+                      {cart &&
+                        cart.reduce(
+                          (total, item) => total + item.variantQuantity,
+                          0
+                        )}
+                    </span>
                   </button>
+
                   <div
                     className="shopping-cart-content"
                     style={{ maxHeight: "300px", overflowY: "auto" }}
