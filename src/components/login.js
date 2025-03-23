@@ -334,11 +334,21 @@ const Login = () => {
     }, 10); // 3000 milliseconds = 3 seconds
 
     return (
-      <div>
-        <img
-          src="https://i.ibb.co/M23HzTF/9-Qgzvh-Logo-Makr.png"
-          alt="Redirecting..."
-        />
+      // <div>
+      //   <img
+      //     src="https://i.ibb.co/M23HzTF/9-Qgzvh-Logo-Makr.png"
+      //     alt="Redirecting..."
+      //   />
+      // </div>
+      <div
+        className="logo-container"
+        style={{ userSelect: "none", textDecoration: "none" }}
+      >
+        <a href="/" className="gow-logo">
+          <span className="gow-main">GOW</span>
+          <br />
+          <span className="gow-full">Galaxy of Wishes</span>
+        </a>
       </div>
     );
   }
@@ -351,7 +361,18 @@ const Login = () => {
             <div className="spinner"></div>
             <p>
               <span className="processing">
-                <img src={logo} alt="Logo" />
+                {/* <img src={logo} alt="Logo" /> */}
+                <div
+                  className="logo-container"
+                  style={{ userSelect: "none", textDecoration: "none" }}
+                >
+                  <a href="/" className="gow-logo">
+                    <span className="gow-main">GOW</span>
+                    <br />
+                    <span className="gow-full">Galaxy of Wishes</span>
+                  </a>
+                </div>
+                s
               </span>
               {/* <div className="processing">Processing</div>{" "}
                 <span className="dot">.</span>

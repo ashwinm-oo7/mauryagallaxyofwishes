@@ -25,7 +25,7 @@ const Feedback = () => {
     confirmationText: "",
   });
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const popupRef = useRef();
 

@@ -472,7 +472,9 @@ export default function SearchResults() {
               : `${filteredProducts?.length.toLocaleString()}`}{" "}
             {noResults ? "Related Results for" : "Search Results for"}{" "}
             <span
-              className="extra-small-screen-scroll"
+              className={
+                searchQuery.length < 30 ? "" : "extra-small-screen-scroll"
+              }
               style={{ color: "red" }}
             >
               "{searchQuery}"

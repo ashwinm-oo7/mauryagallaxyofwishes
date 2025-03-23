@@ -173,6 +173,7 @@ const SignUp = () => {
         >
           <a href="/" className="gow-logo">
             <span className="gow-main">GOW</span>
+            <br />
             <span className="gow-full">Galaxy of Wishes</span>
           </a>
         </div>
@@ -254,7 +255,6 @@ const SignUp = () => {
         <FaUserLock style={{ marginRight: "5px" }} />
         Sign Up
       </h3>
-
       <div className="mb-3">
         <label>
           <FaUser style={{ marginRight: "5px" }} />
@@ -268,7 +268,6 @@ const SignUp = () => {
           onChange={(e) => setFirstName(e.target.value)}
         />
       </div>
-
       <div className="mb-3">
         <label>
           <FaUser style={{ marginRight: "5px" }} />
@@ -282,7 +281,6 @@ const SignUp = () => {
           onChange={(e) => setLastName(e.target.value)}
         />
       </div>
-
       <div className="mb-3">
         <label>
           <FaEnvelope style={{ marginRight: "5px" }} />
@@ -296,7 +294,6 @@ const SignUp = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-
       <div className="mb-3">
         <label>
           <FaLock style={{ marginRight: "5px" }} />
@@ -315,7 +312,6 @@ const SignUp = () => {
           </span>
         </div>
       </div>
-
       <div className="d-grid">
         <button className="btn btn-primary" onClick={signUp}>
           Sign Up

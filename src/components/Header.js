@@ -347,9 +347,9 @@ const Header = () => {
               style={{ marginTop: "-8px" }}
             >
               <div className="header-right-wrap">
-                <div className="header-search-small-display">
+                {/* <div className="header-search-small-display">
                   <Search />
-                </div>
+                </div> */}
                 {localStorage.getItem("userEmail") ? (
                   <div className="same-style account-satting">
                     <a className="account-satting-active" href="/">
@@ -365,7 +365,7 @@ const Header = () => {
                         <li>
                           <p>
                             {localStorage.getItem("userEmail") ? (
-                              <a onClick={() => logout()} href="/login">
+                              <a onClick={() => logout()} href="##">
                                 Logout
                               </a>
                             ) : (
@@ -635,7 +635,6 @@ const Header = () => {
             <div className="mobile-menu" style={{ marginTop: "-" }}>
               <nav id="mobile-menu-active">
                 <ul className="menu-overflow">
-                  {/* {localStorage.getItem("isAdmin") === "true" ? ( */}
                   {isAdmin ? (
                     <li>
                       <a href="/#">
@@ -666,27 +665,24 @@ const Header = () => {
                     <></>
                   )}
                   <li>
-                    <a href="/home">HOME</a>
-                    <ul>
+                    <a href="/#">HOME</a>
+                    <ul className="submenu">
                       <li>
-                        <a href="/#">Collection</a>
-                        <ul>
-                          <li>
-                            <a href="/#">Tops</a>
-                          </li>
-                          <li>
-                            <a href="/#">Bottoms</a>
-                          </li>
-                          <li>
-                            <a href="/#">Dresses</a>
-                          </li>
-                          <li>
-                            <a href="/#">ActiveWear</a>
-                          </li>
-                          <li>
-                            <a href="/#">OuterWear</a>
-                          </li>
-                        </ul>
+                        <a href="/search-results?query=Tops">Tops</a>
+                      </li>
+                      <li>
+                        <a href="/search-results?query=Bottoms">Bottoms</a>
+                      </li>
+                      <li>
+                        <a href="/search-results?query=Dresses">Dresses</a>
+                      </li>
+                      <li>
+                        <a href="/search-results?query=ActiveWear">
+                          ActiveWear
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/search-results?query=Outerwear">OuterWear</a>
                       </li>
                     </ul>
                   </li>
@@ -728,6 +724,9 @@ const Header = () => {
           </div>
         </div>
       </header>
+      <div className="header-search-small-display">
+        <Search />
+      </div>
     </div>
   );
 };

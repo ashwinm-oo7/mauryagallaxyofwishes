@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaMinus, FaBan } from "react-icons/fa";
-import axios from "axios";
 import "../css/home.css";
 
 import { toast } from "react-toastify";
@@ -32,6 +31,7 @@ import {
 } from "./VariantReusable.js";
 import axiosInstance from "./axiosInstance.js";
 import { useCart } from "./CartContext.js";
+import FeedbackForm from "./FeedbackForm.js";
 
 const HomePage = () => {
   const imgRef = useRef();
@@ -47,9 +47,6 @@ const HomePage = () => {
   // const [cart, setCart] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showShareOptions, setShowShareOptions] = useState(null);
-
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const [feedback, setFeedback] = useState("");
 
   const [selectedColors, setSelectedColors] = useState({});
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -181,46 +178,6 @@ const HomePage = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const userEmail = localStorage.getItem("userEmail");
-      if (!userEmail) {
-        toast.info("Please login for submitting feedback");
-        return;
-      }
-      const feedbackData = { feedback };
-      if (userEmail) {
-        feedbackData.userEmail = userEmail;
-      }
-
-      const response = await axios.post(
-        process.env.REACT_APP_API_URL + "feedback/addFeedback",
-        feedbackData
-      );
-      console.log("Feedback submitted:", response);
-      setIsFormVisible(false);
-      if (response.status === 201) {
-        toast.success("Success");
-        setFeedback("");
-      }
-    } catch (error) {
-      if (error.response) {
-        console.error("Error response data:", error.response.data);
-        console.error("Error response status:", error.response.status);
-        console.error("Error response headers:", error.response.headers);
-      } else if (error.request) {
-        console.error("Error request data:", error.request);
-      } else {
-        console.error("Error message:", error.message);
-      }
-    }
-  };
-
-  const handleChange = (e) => {
-    setFeedback(e.target.value);
-  };
-
   const isProductInCart = (product) => {
     return cart.some((item) => item._id === product._id);
   };
@@ -238,10 +195,6 @@ const HomePage = () => {
   const fetchProductDetails = (selectedProduct) => {
     console.log("Selected Product:", selectedProduct);
     setSelectedProduct(selectedProduct);
-  };
-
-  const toggleFormVisibility = () => {
-    setIsFormVisible(!isFormVisible);
   };
 
   const addToCartVariant = async (
@@ -701,6 +654,9 @@ const HomePage = () => {
                 <a href="#product-6" data-bs-toggle="tab">
                   <h4>Mother's Day</h4>
                 </a>
+                <a href="#product-7" data-bs-toggle="tab">
+                  <h4>Kid's</h4>
+                </a>
               </div>
               <div className="tab-content jump">
                 <div className="tab-pane" id="product-1">
@@ -726,6 +682,9 @@ const HomePage = () => {
                 </div>
                 <div className="tab-pane" id="product-6">
                   {renderProductList("Mothers Day", products)}
+                </div>
+                <div className="tab-pane" id="product-7">
+                  {renderProductList("Kids", products)}
                 </div>
               </div>
             </div>
@@ -850,30 +809,7 @@ const HomePage = () => {
                           </a>
                         </li>
                         <li>
-                          <button
-                            className="feedback-button"
-                            id="feedback-button"
-                            onClick={toggleFormVisibility}
-                          >
-                            Leave Feedback
-                          </button>
-                          {isFormVisible && (
-                            <div className="feedback-form">
-                              <form onSubmit={handleSubmit}>
-                                <label htmlFor="feedback">Your Feedback:</label>
-                                <textarea
-                                  id="feedback"
-                                  name="feedback"
-                                  rows="4"
-                                  cols="50"
-                                  value={feedback}
-                                  onChange={handleChange}
-                                  placeholder="Enter your feedback here..."
-                                ></textarea>
-                                <input type="submit" value="Submit" />
-                              </form>
-                            </div>
-                          )}
+                          <FeedbackForm />
                         </li>
                       </ul>
                     </div>
