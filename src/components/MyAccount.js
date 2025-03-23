@@ -29,8 +29,6 @@ const MyAccount = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [changePassword, setChangePassword] = useState(false);
   const [userId, setUserId] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [signupMethod, setSignupMethod] = useState("");
 
   useEffect(() => {
     const userIdFromStorage = localStorage.getItem("userId");
@@ -66,8 +64,6 @@ const MyAccount = () => {
     }
 
     try {
-      setIsLoading(true);
-
       const response = await fetch(
         process.env.REACT_APP_API_URL + `user/profile/${userId}`
       );
@@ -76,17 +72,13 @@ const MyAccount = () => {
         const userData = await response.json();
         console.log("RES", userData);
         toast.success("User profile");
-        setTimeout(() => {
-          setFirstName(userData.firstName);
-          setLastName(userData.lastName);
-          setAddress(userData.address);
-          setPhoneNumber(userData.phoneNumber);
-          setEmail(userData.email);
-          setAge(userData.age);
-          setGender(userData.gender);
-          setSignupMethod(userData.signupMethod);
-        }, 100);
-        setIsLoading(false);
+        setFirstName(userData.firstName);
+        setLastName(userData.lastName);
+        setAddress(userData.address);
+        setPhoneNumber(userData.phoneNumber);
+        setEmail(userData.email);
+        setAge(userData.age);
+        setGender(userData.gender);
       } else if (response.status === 404) {
         console.error("User profile not found");
         toast.error("User profile not found");
@@ -97,8 +89,6 @@ const MyAccount = () => {
     } catch (error) {
       console.error("Error fetching user profile:", error);
       toast.error("Error fetching user profile");
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -114,7 +104,6 @@ const MyAccount = () => {
     };
 
     try {
-      setIsLoading(true);
       const response = await fetch(
         process.env.REACT_APP_API_URL + `user/profile/update/${userId}`,
         {
@@ -138,8 +127,6 @@ const MyAccount = () => {
     } catch (error) {
       console.error("Error updating user profile:", error);
       toast.error("Error updating user profile");
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -232,19 +219,6 @@ const MyAccount = () => {
 
   return (
     <div>
-      {isLoading && (
-        <div className="overlay">
-          <div className="processing-modal">
-            <div className="spinner"></div>
-            <p>
-              <span className="processing">Loading</span>
-              <span className="dot">.</span>
-              <span className="dot">.</span>
-              <span className="dot">.</span>
-            </p>
-          </div>
-        </div>
-      )}
       <div className="my-account-container">
         <h2>My Account</h2>
         <div className="profile-details">
@@ -308,82 +282,78 @@ const MyAccount = () => {
           <button className="update-profile-btn" onClick={handleUpdateProfile}>
             Update Profile
           </button>
-          {!signupMethod === "google" && (
-            <>
-              <div className="profile-item">
-                <label
-                  className="labelMyAccount"
-                  style={{ display: "flex", alignItems: "center" }}
-                >
-                  Do you want to change the password?
-                  <Switch
-                    checked={changePassword}
-                    onChange={toggleChangePassword}
-                  />
-                </label>
+          <div className="profile-item">
+            <label
+              className="labelMyAccount"
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              Do you want to change the password?
+              <Switch
+                checked={changePassword}
+                onChange={toggleChangePassword}
+              />
+            </label>
+          </div>
+          {changePassword && (
+            <div>
+              <div style={{ backgroundColor: "#043468" }}>
+                <h3 className="change-password">Change Password</h3>
               </div>
-              {changePassword && (
-                <div>
-                  <div style={{ backgroundColor: "#043468" }}>
-                    <h3 className="change-password">Change Password</h3>
-                  </div>
-                  <div className="profile-item">
-                    <FaLock />
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      // className="form-control"
-                      value={oldPassword}
-                      onChange={(e) => setOldPassword(e.target.value)}
-                      placeholder="Old Password"
-                    />
-                    <span
-                      className="password-toggle"
-                      onClick={togglePasswordVisibility}
-                    >
-                      {showPassword ? <FaEyeSlash /> : <FaEye />}
-                    </span>
-                  </div>
-                  <div className="profile-item">
-                    <FaLock />
-                    <input
-                      // className="form-control"
-                      type={showPasswords ? "text" : "password"}
-                      value={newPassword}
-                      style={{
-                        borderColor: newPassword ? "blue" : "red",
-                      }}
-                      onChange={(e) => setNewPassword(e.target.value)}
-                      placeholder="New Password"
-                    />
-                    <span
-                      className="password-toggle"
-                      onClick={togglePasswordVisibilitys}
-                    >
-                      {showPasswords ? <FaEyeSlash /> : <FaEye />}
-                    </span>
-                  </div>
-                  <div className="profile-item">
-                    <FaLock />
-                    <input
-                      // className="form-control"
-                      type="password"
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                      placeholder="Confirm New Password"
-                      style={{
-                        boxShadow: newPassword ? "" : "red",
-                      }}
-                    />
-                  </div>
-                  <button
-                    className="update-profile-btn"
-                    onClick={handleChangePassword}
-                  >
-                    Change Password
-                  </button>
-                </div>
-              )}
-            </>
+              <div className="profile-item">
+                <FaLock />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  // className="form-control"
+                  value={oldPassword}
+                  onChange={(e) => setOldPassword(e.target.value)}
+                  placeholder="Old Password"
+                />
+                <span
+                  className="password-toggle"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
+              </div>
+              <div className="profile-item">
+                <FaLock />
+                <input
+                  // className="form-control"
+                  type={showPasswords ? "text" : "password"}
+                  value={newPassword}
+                  style={{
+                    borderColor: newPassword ? "blue" : "red",
+                  }}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  placeholder="New Password"
+                />
+                <span
+                  className="password-toggle"
+                  onClick={togglePasswordVisibilitys}
+                >
+                  {showPasswords ? <FaEyeSlash /> : <FaEye />}
+                </span>
+              </div>
+              <div className="profile-item">
+                <FaLock />
+                <input
+                  // className="form-control"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="Confirm New Password"
+                  style={{
+                    boxShadow: newPassword ? "" : "red",
+                  }}
+                />
+              </div>
+              <button
+                className="update-profile-btn"
+                onClick={handleChangePassword}
+              >
+                Change Password
+              </button>
+            </div>
           )}
         </div>
       </div>
