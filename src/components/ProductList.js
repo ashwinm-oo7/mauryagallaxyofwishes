@@ -262,7 +262,7 @@ const ProductList = () => {
               style={{
                 display: "flex",
                 alignItems: "center",
-                padding: "2px",
+                padding: "10px",
                 cursor: "pointer",
                 fontSize: "20px",
                 backgroundColor: "#074c96",

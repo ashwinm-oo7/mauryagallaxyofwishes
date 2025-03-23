@@ -118,11 +118,12 @@ input:checked + .slider:before {
 }
 
 .horizontal-scroll {
+  width: 60%;
   overflow-y: auto;
-width: 60%;
+  overflow-x: auto;
   white-space: nowrap;
   max-height: 100px;
-  max-width: 10%; 
+  max-width: 250px; 
 }
 @media only screen and (max-width: 600px) {
   .product-list th:nth-child(7), .product-list td:nth-child(7),
