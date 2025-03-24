@@ -424,27 +424,12 @@ const ProceedToPay = () => {
       return;
     }
 
-    const amount = 1; // Use a small amount for testing
     const transactionID = `TXN${Date.now()}`;
-    const deepLink = `upi://pay?pa=${upiID}&pn=YourName&mc=&tid=${transactionID}&tr=${transactionID}&tn=Payment&am=${amount}&cu=INR`;
+    const deepLink = `upi://pay?pa=${"9702359576@ptsbi"}&pn=ASHISH%20RAJBALI%20MAURYA&mc=&tid=${transactionID}&tr=${transactionID}&tn=Payment&am=${finalAmount}&cu=INR`;
 
     // Open the UPI app with the deep link
     window.location.href = deepLink;
   };
-  const generateUpiLink = () => {
-    if (!/^\w+@\w+$/.test(upiID)) {
-      alert("Invalid UPI ID format. Please enter in format: username@bank");
-      return;
-    }
-
-    const amount = 4587.52; // Example amount
-    const name = "ASHISH%20RAJBALI%20MAURYA";
-    const transactionNote = "Good%20Service";
-    const upiLink = `upi://pay?pa=${upiID}&pn=${name}&am=${amount}&tn=${transactionNote}&cu=INR`;
-    window.location.href = upiLink;
-    return upiLink;
-  };
-
   const handleCVVChange = (e) => {
     const cvv = e.target.value.replace(/\D/g, "");
     setCvv(cvv);
@@ -792,28 +777,20 @@ const ProceedToPay = () => {
                         </p>
                       )}
                       <br />
-                      {/* <button
+                      <button
                         onClick={notifyUserOnUPI}
-                        style={{ marginTop: "10px", cursor: "pointer" }}
+                        style={{
+                          marginTop: "10px",
+                          padding: "10px",
+                          background: "green",
+                          color: "white",
+                          border: "none",
+                          borderRadius: "5px",
+                          cursor: "pointer",
+                        }}
                       >
                         Notify on UPI App
-                      </button> */}
-                      {upiID && (
-                        <a
-                          href={generateUpiLink()}
-                          style={{
-                            display: "inline-block",
-                            marginTop: "10px",
-                            padding: "10px",
-                            background: "green",
-                            color: "white",
-                            textDecoration: "none",
-                            borderRadius: "5px",
-                          }}
-                        >
-                          Pay via UPI
-                        </a>
-                      )}
+                      </button>
                     </>
                   )}
                   {upiPaymentOption === "GenerateUPILink" && (
