@@ -229,7 +229,7 @@ const Header = () => {
                 <nav>
                   <ul>
                     <li>
-                      <a href="/#">
+                      <a href="/#" className="a-tag">
                         <FaUser /> Profile
                         <i className="fa fa-angle-down"></i>
                       </a>
@@ -273,7 +273,7 @@ const Header = () => {
                     </li>
                     {isAdmin ? (
                       <li>
-                        <a href="/#">
+                        <a href="/#" className="a-tag">
                           <FaUserShield /> Vendor{" "}
                           <i className="fa fa-angle-down"></i>
                         </a>
@@ -302,7 +302,7 @@ const Header = () => {
                       <></>
                     )}
                     <li>
-                      <a href="/#">
+                      <a href="/#" className="a-tag">
                         <FaUserShield /> Occasion{" "}
                         <i className="fa fa-angle-down"></i>
                       </a>
@@ -334,7 +334,7 @@ const Header = () => {
                       </ul>
                     </li>
                     <li>
-                      <a href="/about">
+                      <a href="/about" className="a-tag">
                         <FaInfoCircle /> About Us
                       </a>
                     </li>

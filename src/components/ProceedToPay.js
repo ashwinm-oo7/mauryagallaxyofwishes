@@ -383,6 +383,68 @@ const ProceedToPay = () => {
     setPaymentUpdate("");
   };
 
+  const fetchAddress = async (latitude, longitude) => {
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+      );
+      const data = await response.json();
+      if (data.display_name) {
+        setDeliveryAddress(data.display_name);
+      } else {
+        alert("Failed to fetch address. Try again.");
+      }
+    } catch (error) {
+      console.error("Error fetching address:", error);
+      alert("Unable to fetch address.");
+    }
+  };
+
+  // Function to get user's current location
+  const getCurrentLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          fetchAddress(latitude, longitude);
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+          alert("Location access denied. Enable GPS and try again.");
+        },
+        { enableHighAccuracy: true }
+      );
+    } else {
+      alert("Geolocation is not supported by your browser.");
+    }
+  };
+  const notifyUserOnUPI = () => {
+    if (!/^\w+@\w+$/.test(upiID)) {
+      alert("Invalid UPI ID format. Please enter in format: username@bank");
+      return;
+    }
+
+    const amount = 1; // Use a small amount for testing
+    const transactionID = `TXN${Date.now()}`;
+    const deepLink = `upi://pay?pa=${upiID}&pn=YourName&mc=&tid=${transactionID}&tr=${transactionID}&tn=Payment&am=${amount}&cu=INR`;
+
+    // Open the UPI app with the deep link
+    window.location.href = deepLink;
+  };
+  const generateUpiLink = () => {
+    if (!/^\w+@\w+$/.test(upiID)) {
+      alert("Invalid UPI ID format. Please enter in format: username@bank");
+      return;
+    }
+
+    const amount = 4587.52; // Example amount
+    const name = "ASHISH%20RAJBALI%20MAURYA";
+    const transactionNote = "Good%20Service";
+    const upiLink = `upi://pay?pa=${upiID}&pn=${name}&am=${amount}&tn=${transactionNote}&cu=INR`;
+    window.location.href = upiLink;
+    return upiLink;
+  };
+
   const handleCVVChange = (e) => {
     const cvv = e.target.value.replace(/\D/g, "");
     setCvv(cvv);
@@ -544,7 +606,12 @@ const ProceedToPay = () => {
               onChange={(e) => setDeliveryAddress(e.target.value)}
               placeholder="Enter your delivery address"
             />{" "}
-            <FaMapMarkerAlt />
+            <button
+              onClick={getCurrentLocation}
+              style={{ marginLeft: "10px", cursor: "pointer" }}
+            >
+              <FaMapMarkerAlt />
+            </button>
             <br />
             <strong>
               <FaCreditCard /> Select Payment Method
@@ -723,6 +790,29 @@ const ProceedToPay = () => {
                           Please enter a valid UPI ID format: UserName@BankName
                           or PhoneNumber@BankName
                         </p>
+                      )}
+                      <br />
+                      {/* <button
+                        onClick={notifyUserOnUPI}
+                        style={{ marginTop: "10px", cursor: "pointer" }}
+                      >
+                        Notify on UPI App
+                      </button> */}
+                      {upiID && (
+                        <a
+                          href={generateUpiLink()}
+                          style={{
+                            display: "inline-block",
+                            marginTop: "10px",
+                            padding: "10px",
+                            background: "green",
+                            color: "white",
+                            textDecoration: "none",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          Pay via UPI
+                        </a>
                       )}
                     </>
                   )}

@@ -2373,8 +2373,16 @@ a.default-btn {
   top: 0px;
 }
 .main-menu nav ul li:hover a {
-  color: #a749ff;
+  color: white;
 }
+.a-tag {
+  transition: transform 0.3s ease-in-out; /* Smooth animation */
+}
+
+.a-tag:hover {
+  transform: scale(1.1); /* Slightly enlarge the icon */
+}
+
 .main-menu.menu-white nav ul {
   text-align: left;
 }
