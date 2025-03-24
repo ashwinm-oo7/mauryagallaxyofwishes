@@ -17,6 +17,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 // import jsPDF from "jspdf";
 import html2pdf from "html2pdf.js";
 import InvoicePage from "./InvoicePage.js";
+import { useCart } from "./CartContext.js";
 // import { error } from "ajv/dist/vocabularies/applicator/dependencies.js";
 // import logo from "../icons/maurya.png";
 
@@ -39,7 +40,7 @@ const ProceedToPay = () => {
   const [totalQuantity, setTotalQuantity] = useState(0);
   const [paymentSubmitted, setPaymentSubmitted] = useState(false);
   const [paymentDetails, setPaymentDetails] = useState("");
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
   const [selectedBank, setSelectedBank] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [mobileNumberError, setMobileNumberError] = useState("");
@@ -50,6 +51,7 @@ const ProceedToPay = () => {
   const [upiLink, setUpiLink] = useState("");
   const [qrCode, setQrCode] = useState("");
   const [transactionId, setTransactionId] = useState("");
+  const { cart, setCart } = useCart();
 
   const { SubTotal, finalAmount, Tax, initialCart, size } =
     location.state || {};
@@ -126,7 +128,7 @@ const ProceedToPay = () => {
       const element = document.getElementById("payment-container");
 
       const options = {
-        filename: "MauryaInvoice.pdf",
+        filename: "GallaxyOfWishesInvoice.pdf",
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { scale: 2 },
         jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
@@ -292,7 +294,7 @@ const ProceedToPay = () => {
         );
       }
       if (userId) {
-        handleClearCart(setCart, true);
+        handleClearCart(setCart, true, null);
       } else {
         localStorage.removeItem("cart");
       }

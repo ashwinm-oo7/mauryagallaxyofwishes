@@ -1,7 +1,7 @@
 
-# Maurya.in E-Commerce Project
+# GallayOfWishes.in E-Commerce Project
 
-Welcome to the Maurya.in E-Commerce Project repository! This project is built using React.js for the frontend.
+Welcome to the Gallay Of Wishes.in E-Commerce Project repository! This project is built using React.js for the frontend.
 
 ## Description
 

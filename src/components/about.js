@@ -23,8 +23,8 @@ const About = () => {
       new window.google.maps.Marker({
         position: mauryaLocation,
         map: map,
-        title: "Maurya",
-        label: "Maurya",
+        title: "Gallaxy Of Wishes",
+        label: "Gallaxy Of Wishes",
       });
     };
 
@@ -37,10 +37,10 @@ const About = () => {
   return (
     <div className="about">
       <div className="about-header">
-        <h2>Welcome to Maurya</h2>
+        <h2>Welcome to Gallaxy Of Wishes</h2>
         <p className="about-description">
-          Founded in 1995, Maurya is one of India’s leading clothing brands and
-          the flagship company of the RPG GROUP.
+          Founded in 1995, Gallaxy Of Wishes is one of India’s leading clothing
+          brands and the flagship company of the RPG GROUP.
         </p>
         <a href="/#" className="about-link">
           Explore Our Collection
@@ -63,8 +63,8 @@ const About = () => {
         <div className="about-text">
           <p>
             Driven by the purpose of helping the world move safely and smartly,
-            Maurya provides world-class products and services across 110+ states
-            in India.
+            Gallaxy Of Wishes provides world-class products and services across
+            110+ states in India.
             <br />
             Say hello to happiness! ₹11,315 Cr. of annual revenue.
           </p>
@@ -123,8 +123,8 @@ const About = () => {
       ;
       <div className="map-container">
         <iframe
-          title="Maurya Company Location"
-          label="Maurya"
+          title="Gallaxy Of Wishes Company Location"
+          label="Gallaxy Of Wishes"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.204071176514!2d72.8443036!3d19.1561614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b7241bee06c7%3A0x1d4f20f78e971dfc!2sASHTHA%20HOSPITAL!5e0!3m2!1sen!2sin!4v1620690224334!5m2!1sen!2sin"
           // src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.204071176514!2d72.84537081491185!3d19.144239454791748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b856d44518c3%3A0x590ddaf2fc1d3955!2sBehram%20Baugh%2C%20Jogeshwari%20West%2C%20Mumbai%2C%20Maharashtra%20400060!5e0!3m2!1sen!2sin!4v1620690224334!5m2!1sen!2sin"
           allowfullscreen=""

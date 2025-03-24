@@ -14,7 +14,7 @@ import {
 // import tyreLogo from "../icons/tyrelogo.jpg";
 import { toast } from "react-toastify";
 import "../css/login.css";
-import logo from "../icons/maurya.png";
+// import logo from "../icons/maurya.png";
 import GoogleSingup from "./GoogleSingup";
 // import { AuthContext } from "./AuthContext"; // Adjust the path
 // import axios from "axios";

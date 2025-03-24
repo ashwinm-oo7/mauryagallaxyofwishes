@@ -9,7 +9,9 @@ export default function Search(props) {
   const navigate = useNavigate();
 
   const handleSearchKeyPress = (e) => {
-    if (e.key === "Enter" && searchInput.trim()) {
+    // if (e.key === "Enter" && searchInput.trim()) {
+    e.preventDefault();
+    if (searchInput.trim()) {
       const searchQuery = searchInput.toLowerCase().trim();
 
       // Use navigate to change the URL without reloading the page
@@ -68,7 +70,8 @@ export default function Search(props) {
         placeholder="Search type then press enter"
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
-        onKeyPress={handleSearchKeyPress}
+        // onKeyPress={handleSearchKeyPress}
+        onKeyDown={(e) => e.key === "Enter" && handleSearchKeyPress(e)}
       />
       <FaMicrophone
         onClick={startListening}
@@ -85,6 +88,7 @@ export default function Search(props) {
         }}
         title="Click to Speak"
       />
+
       {/* <span role="img" aria-label="microphone"></span> */}
     </div>
   );
