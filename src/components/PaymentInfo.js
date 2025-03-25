@@ -162,8 +162,12 @@ const PaymentInfo = () => {
                       <br />
                       <strong>User EmailID :</strong> {payment.userEmail}
                       <br />
-                      <strong>Delivery Address :</strong>{" "}
-                      {payment.deliveryAddress}
+                      <div className="card-form">
+                        <strong>Delivery Address :</strong>
+                        <span className="delivery-address">
+                          {payment.deliveryAddress}
+                        </span>
+                      </div>
                       <br />
                       <strong>Total Amount :</strong> {payment.amountPaid}
                       <br />

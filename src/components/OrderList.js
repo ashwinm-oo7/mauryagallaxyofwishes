@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../css/OrderList.css";
+import Pagination from "./Pagination/Pagination";
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+
   useEffect(() => {
     fetchOrders();
   }, []);
@@ -20,12 +24,22 @@ const OrderList = () => {
       const data = await response.json();
       console.log("ORDERLIST", data);
       setOrders(data.reverse());
+
       setLoading(false);
     } catch (error) {
       console.error("Error fetching orders:", error.message);
       setLoading(false);
     }
   };
+  const handleItemsPerPageChange = (e) => {
+    setItemsPerPage(Number(e.target.value));
+    setCurrentPage(1);
+  };
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const totalPages = Math.ceil(orders.length / itemsPerPage);
+  const currentItems = orders.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
     <div className="order-list-container">
@@ -53,7 +67,7 @@ const OrderList = () => {
                   </td>
                 </tr>
               ) : (
-                orders.map((order, index) => (
+                currentItems.map((order, index) => (
                   <tr key={order._id}>
                     <td>{index + 1}</td>
                     <td>
@@ -73,6 +87,16 @@ const OrderList = () => {
           </table>
         )}
       </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        indexOfFirstItem={indexOfFirstItem}
+        indexOfLastItem={indexOfLastItem}
+        filteredPaymentInfo={orders}
+        itemsPerPage={itemsPerPage}
+        setCurrentPage={setCurrentPage}
+        handleItemsPerPageChange={handleItemsPerPageChange}
+      />
     </div>
   );
 };
