@@ -176,7 +176,8 @@ const ReviewList = () => {
                 placeholder="Search by E-mail  then press enter"
                 value={searchInput}
                 onChange={handleSearchInputChange}
-                onKeyPress={(e) =>
+                onKeyDown={(e) =>
+                  e.key === "Enter" &&
                   handleSearchKeyPress(
                     e,
                     filteredReviews,

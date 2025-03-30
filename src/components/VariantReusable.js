@@ -197,52 +197,50 @@ export const handleSearchKeyPress = (
   const trimmedSearchInput = searchInput.trim(); // Trim the input here
 
   if (trimmedSearchInput) {
-    if (e.key === "Enter") {
-      const searchFields = [
-        "_id",
-        "categoryName",
-        "subCategoryName",
-        "brandName",
-        "productName",
-        "productQuantity",
-        "productPrice",
-        "productMrpPrice",
-        "userEmail",
-        "createdAt",
-        "isApproved",
-        "comment",
-        "InvoiceNumber",
-        "rating",
-      ];
+    const searchFields = [
+      "_id",
+      "categoryName",
+      "subCategoryName",
+      "brandName",
+      "productName",
+      "productQuantity",
+      "productPrice",
+      "productMrpPrice",
+      "userEmail",
+      "createdAt",
+      "isApproved",
+      "comment",
+      "InvoiceNumber",
+      "rating",
+    ];
 
-      const searchTerms = trimmedSearchInput
-        .split(" ")
-        .map((term) => term.toLowerCase().trim())
-        .filter((term) => term.length > 0);
+    const searchTerms = trimmedSearchInput
+      .split(" ")
+      .map((term) => term.toLowerCase().trim())
+      .filter((term) => term.length > 0);
 
-      const filteredPaymentInfo = products.filter((prod) => {
-        return searchFields.some((field) => {
-          const fieldValue = prod[field];
+    const filteredPaymentInfo = products.filter((prod) => {
+      return searchFields.some((field) => {
+        const fieldValue = prod[field];
 
-          if (typeof fieldValue === "number") {
-            return searchTerms.some((term) =>
-              fieldValue.toString().includes(term)
-            );
-          } else if (typeof fieldValue === "string") {
-            return searchTerms.some((term) =>
-              fieldValue.toLowerCase().includes(term)
-            );
-          } else if (typeof fieldValue === "boolean") {
-            const boolStr = fieldValue ? "true" : "false";
-            return searchTerms.some((term) => boolStr.includes(term));
-          }
-          return false;
-        });
+        if (typeof fieldValue === "number") {
+          return searchTerms.some((term) =>
+            fieldValue.toString().includes(term)
+          );
+        } else if (typeof fieldValue === "string") {
+          return searchTerms.some((term) =>
+            fieldValue.toLowerCase().includes(term)
+          );
+        } else if (typeof fieldValue === "boolean") {
+          const boolStr = fieldValue ? "true" : "false";
+          return searchTerms.some((term) => boolStr.includes(term));
+        }
+        return false;
       });
+    });
 
-      setFilteredPaymentInfo(filteredPaymentInfo);
-      setCurrentPage(1);
-    }
+    setFilteredPaymentInfo(filteredPaymentInfo);
+    setCurrentPage(1);
   } else {
     setFilteredPaymentInfo(products); // Reset to show all products if input is empty
   }
