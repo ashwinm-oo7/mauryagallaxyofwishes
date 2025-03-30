@@ -159,7 +159,7 @@ const ProductList = () => {
 
   const handleSearchInputChange = (e) => {
     setSearchInput(e.target.value.toLowerCase());
-    if (e.target.value.toLowerCase().trim() === "") {
+    if (e.target.value.toLowerCase() === "") {
       setFilteredPaymentInfo(products);
       setCurrentPage(1);
     }
@@ -284,16 +284,17 @@ const ProductList = () => {
                 placeholder="Search BrandName then press enter"
                 value={searchInput}
                 onChange={handleSearchInputChange}
-                onKeyDown={(e) =>
-                  e.key === "Enter" &&
-                  handleSearchKeyPress(
-                    e,
-                    products,
-                    searchInput,
-                    setFilteredPaymentInfo,
-                    setCurrentPage
-                  )
-                }
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === "Done") {
+                    handleSearchKeyPress(
+                      e,
+                      products,
+                      searchInput,
+                      setFilteredPaymentInfo,
+                      setCurrentPage
+                    );
+                  }
+                }}
               />
               <div style={{ position: "relative", display: "inline-block" }}>
                 <FaMicrophone
