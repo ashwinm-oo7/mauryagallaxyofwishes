@@ -162,6 +162,14 @@ const ProductList = () => {
     if (e.target.value.toLowerCase() === "") {
       setFilteredPaymentInfo(products);
       setCurrentPage(1);
+    } else {
+      handleSearchKeyPress(
+        e,
+        products,
+        searchInput,
+        setFilteredPaymentInfo,
+        setCurrentPage
+      );
     }
   };
 
@@ -277,6 +285,7 @@ const ProductList = () => {
               <span title="refresh the list" onClick={fetchAllProducts}>
                 Product List
               </span>
+
               <input
                 className="product-list-search"
                 style={{ borderRadius: "30px", maxWidth: "500px" }}
@@ -284,17 +293,16 @@ const ProductList = () => {
                 placeholder="Search BrandName then press enter"
                 value={searchInput}
                 onChange={handleSearchInputChange}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === "Done") {
-                    handleSearchKeyPress(
-                      e,
-                      products,
-                      searchInput,
-                      setFilteredPaymentInfo,
-                      setCurrentPage
-                    );
-                  }
-                }}
+                onKeyDown={(e) =>
+                  e.key === "Enter" &&
+                  handleSearchKeyPress(
+                    e,
+                    products,
+                    searchInput,
+                    setFilteredPaymentInfo,
+                    setCurrentPage
+                  )
+                }
               />
               <div style={{ position: "relative", display: "inline-block" }}>
                 <FaMicrophone
@@ -312,6 +320,7 @@ const ProductList = () => {
                   }}
                   title="Click to Speak"
                 />
+
                 {/* <span role="img" aria-label="microphone"></span> */}
               </div>
 
