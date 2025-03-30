@@ -241,8 +241,6 @@ export const handleSearchKeyPress = (
 
     setFilteredPaymentInfo(filteredPaymentInfo);
     setCurrentPage(1);
-  } else {
-    setFilteredPaymentInfo(products); // Reset to show all products if input is empty
   }
 };
 
