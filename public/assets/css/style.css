@@ -2088,7 +2088,7 @@ a.default-btn {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1365px) {
   .header-padding-1 .container-fluid {
-    padding: 0 15px;
+    padding: 0 10px;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -2355,7 +2355,7 @@ a.default-btn {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1365px) {
   .main-menu nav ul li {
-    padding: 0 10px;
+    padding: 0 5px;
   }
 }
 .main-menu nav ul li > a {

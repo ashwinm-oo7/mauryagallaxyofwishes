@@ -4,7 +4,8 @@ import {
   FaPlus,
   FaUser,
   FaUserShield,
-  FaInfoCircle,
+  FaGift,
+  FaHandHoldingHeart,
 } from "react-icons/fa";
 import "../css/home.css";
 // import logo from "../icons/gow.jpg";
@@ -229,6 +230,9 @@ const Header = () => {
                 <nav>
                   <ul>
                     <li>
+                      <Search />
+                    </li>
+                    <li>
                       <a href="/#" className="a-tag">
                         <FaUser /> Profile
                         <i className="fa fa-angle-down"></i>
@@ -268,9 +272,6 @@ const Header = () => {
                         )}
                       </ul>
                     </li>
-                    <li>
-                      <Search />
-                    </li>
                     {isAdmin ? (
                       <li>
                         <a href="/#" className="a-tag">
@@ -303,8 +304,7 @@ const Header = () => {
                     )}
                     <li>
                       <a href="/#" className="a-tag">
-                        <FaUserShield /> Occasion{" "}
-                        <i className="fa fa-angle-down"></i>
+                        <FaGift /> Occasion <i className="fa fa-angle-down"></i>
                       </a>
                       <ul className="submenu">
                         <li>
@@ -334,9 +334,36 @@ const Header = () => {
                       </ul>
                     </li>
                     <li>
-                      <a href="/about" className="a-tag">
-                        <FaInfoCircle /> About Us
+                      <a href="/#" className="a-tag">
+                        <FaHandHoldingHeart /> HandPic design
+                        <i className="fa fa-angle-down"></i>
                       </a>
+                      <ul className="submenu">
+                        <li>
+                          <a href="/search-results?query=Handpic Design">
+                            HandPic design
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/search-results?query=BirthDay">Birthday</a>
+                        </li>
+                        <li>
+                          <a href="/search-results?query=FriendShip Day">
+                            FriendShip  Day
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/search-results?query=Festival">Festival</a>
+                        </li>
+                        <li>
+                          <a href="/search-results?query=Wedding">Wedding</a>
+                        </li>
+                        <li>
+                          <a href="/search-results?query=Mothers Day ">
+                            Mother's Day
+                          </a>
+                        </li>
+                      </ul>
                     </li>
                   </ul>
                 </nav>
@@ -347,65 +374,6 @@ const Header = () => {
               style={{ marginTop: "-8px" }}
             >
               <div className="header-right-wrap">
-                {/* <div className="header-search-small-display">
-                  <Search />
-                </div> */}
-                {localStorage.getItem("userEmail") ? (
-                  <div className="same-style account-satting">
-                    <a className="account-satting-active" href="/">
-                      <i
-                        style={{
-                          color: "whitesmoke",
-                        }}
-                        className="pe-7s-user-female"
-                      ></i>
-                    </a>
-                    <div className="account-dropdown">
-                      <ul>
-                        <li>
-                          <p>
-                            {localStorage.getItem("userEmail") ? (
-                              <a onClick={() => logout()} href="##">
-                                Logout
-                              </a>
-                            ) : (
-                              <Link to="/login">Login</Link>
-                            )}
-                          </p>
-                        </li>
-
-                        <li>
-                          <a href="/sign-up">Register</a>
-                        </li>
-                        <li>
-                          <a href="/#">Wishlist </a>
-                        </li>
-                        <li>
-                          <Link to="/myAccount">My Account</Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="same-style account-satting">
-                    <a className="account-satting-active" href="/#">
-                      <i
-                        style={{ color: "whitesmoke" }}
-                        className="pe-7s-user-female"
-                      ></i>
-                    </a>
-                    <div className="account-dropdown">
-                      <ul>
-                        <li>
-                          <a href="/login">Login</a>
-                        </li>
-                        <li>
-                          <a href="/sign-up">Register</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                )}
                 {selectedProduct && (
                   <div className="same-style header-wishlist">
                     <a href="/#">
@@ -414,7 +382,6 @@ const Header = () => {
                     </a>
                   </div>
                 )}
-                {/* 888888888888 CART LIST 888888888888888888888888888 */}
                 <div className="same-style mega-menu cart-wrap">
                   {isProcessing && (
                     <div className="overlay">
@@ -437,7 +404,6 @@ const Header = () => {
                       onClick={() => (window.location.href = `/cart-page`)}
                     ></i>
 
-                    {/* <span onClick={() => (window.location.href = /cart-page)}>  🛒 </span> */}
                     <span className="count-style">
                       {cart &&
                         cart.reduce(
@@ -598,7 +564,7 @@ const Header = () => {
                         <h3>Cart is Empty</h3>
                       )}
                     </ul>
-                    {/* *******CART TOTAL *********** */}
+
                     <div className="shopping-cart-total">
                       <h4>
                         SubTotal:
@@ -623,13 +589,11 @@ const Header = () => {
                       <Link to="/cart-page" className="default-btn">
                         view cart
                       </Link>
-                      {/* <button className="default-btn">Checkout</button> */}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            {/* 77777777777777777777 */}
           </div>
           <div className="mobile-menu-area">
             <div className="mobile-menu" style={{ marginTop: "-" }}>

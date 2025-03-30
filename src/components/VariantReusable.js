@@ -192,6 +192,8 @@ export const handleSearchKeyPress = (
   setFilteredPaymentInfo,
   setCurrentPage
 ) => {
+  e.preventDefault();
+
   const trimmedSearchInput = searchInput.trim(); // Trim the input here
 
   if (trimmedSearchInput) {
@@ -241,6 +243,8 @@ export const handleSearchKeyPress = (
       setFilteredPaymentInfo(filteredPaymentInfo);
       setCurrentPage(1);
     }
+  } else {
+    setFilteredPaymentInfo(products); // Reset to show all products if input is empty
   }
 };
 

@@ -30,7 +30,7 @@ const ReviewList = () => {
   const [searchInput, setSearchInput] = useState("");
   const [filteredPaymentInfo, setFilteredPaymentInfo] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(20);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [modalImages, setModalImages] = useState([]); // State for modal images
   const [currentImageIndex, setCurrentImageIndex] = useState(-1); // Index for currently selected image
   const [selectedRating, setSelectedRating] = useState("");

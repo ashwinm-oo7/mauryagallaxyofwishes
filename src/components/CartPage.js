@@ -93,6 +93,19 @@ const CartPage = () => {
   cart.forEach((item) => {
     totalQuantity += item.variantQuantity;
   });
+  const handleRemoveWrapper = async (index, cart, setCart, productId) => {
+    if (isProcessing) return; // Prevent multiple clicks
+
+    setIsProcessing(true);
+    try {
+      await handleRemoveFromCartVariant(index, cart, setCart, productId);
+    } catch (error) {
+      console.error("Error removing item:", error);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
   return (
     <>
       {isProcessing && (
@@ -130,7 +143,11 @@ const CartPage = () => {
                 </div> */}
                 <div
                   className="logo-container"
-                  style={{ userSelect: "none", textDecoration: "none" }}
+                  style={{
+                    userSelect: "none",
+                    textDecoration: "none",
+                    marginTop: "10px",
+                  }}
                 >
                   <a href="/" className="gow-logo">
                     <span className="gow-main">GOW</span>
@@ -138,7 +155,7 @@ const CartPage = () => {
                   </a>
                 </div>
                 <span
-                  style={{ marginLeft: "10px" }}
+                  style={{ marginLeft: "50px" }}
                   className="cart-heading-text"
                   title="Cart Item List"
                 >
@@ -154,8 +171,8 @@ const CartPage = () => {
                     color="#827f7f"
                     title="Refresh"
                     style={{
-                      marginLeft: "80px",
-                      fontSize: "20px",
+                      marginLeft: "20px",
+                      fontSize: "15px",
                       cursor: "pointer",
                     }}
                     className="refresh-button"
@@ -164,7 +181,7 @@ const CartPage = () => {
                 </span>
                 <FaTrash
                   className="clear-cart-button"
-                  style={{ fontSize: "20px" }}
+                  style={{ fontSize: "20px", color: "white" }}
                   title="Clear Cart"
                   onClick={() => handleClearCart(setCart)}
                 />
@@ -193,7 +210,7 @@ const CartPage = () => {
                       <div className="cart-item-container">
                         <div
                           className="cart-image-container"
-                          style={{ width: "20%" }}
+                          style={{ width: "" }}
                         >
                           {matchingImage ? (
                             <img
@@ -209,24 +226,30 @@ const CartPage = () => {
                           )}
                         </div>
                         <div className="cart-remove-container">
-                          <FaTimes
+                          <FaTrash
                             title="Remove-Item"
                             className="cart-remove"
                             onClick={() =>
-                              handleRemoveFromCartVariant(
+                              handleRemoveWrapper(
                                 index,
                                 cart,
                                 setCart,
                                 item._id
                               )
                             }
+                            disabled={isProcessing}
                           />
                         </div>
 
                         <div className="cart-details">
                           <Link to={`/search-results?query=${item.brandName}`}>
                             <p>
-                              <strong>Brand Name:</strong> {item.brandName}
+                              <strong
+                                style={{ justifyContent: "space-between" }}
+                              >
+                                Brand Name:
+                              </strong>{" "}
+                              {item.brandName}
                             </p>
                           </Link>
                           <Link
@@ -326,8 +349,8 @@ const CartPage = () => {
 
                           <div>
                             <OfferDiscounts />
-                            <SizeChart />
-                            <SizeGuide />
+                            {/* <SizeChart /> */}
+                            {/* <SizeGuide /> */}
                           </div>
                         </div>
                       </div>
@@ -368,8 +391,13 @@ const CartPage = () => {
               paddingBottom: "20px",
             }}
           >
-            <strong className="">
-              <button onClick={handleProceedToPayClick}>Proceed to pay</button>
+            <strong>
+              <button
+                className="Proceed-to-pay-button"
+                onClick={handleProceedToPayClick}
+              >
+                Proceed to pay
+              </button>
             </strong>
           </div>
         </>

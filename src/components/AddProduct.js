@@ -450,11 +450,11 @@ const AddProduct = () => {
       if (response.status === 201) {
         resetForm();
         toast.success("Product added successfully", { autoClose: 2000 });
-        setIsLoading(true);
+        setIsLoading(false);
         console.log(response.status);
       } else if (response.status === 200) {
         toast.success("Product updated successfully", { autoClose: 2000 });
-        setIsLoading(true);
+        setIsLoading(false);
         console.log(response.status);
       } else {
         toast.error("Failed to add product");
@@ -472,7 +472,7 @@ const AddProduct = () => {
         setIsLoading(true);
       }
     } finally {
-      setIsLoading(true);
+      setIsLoading(false);
     }
     // window.location.reload();
   };
