@@ -263,7 +263,8 @@ margin-left: 15px;
 .Proceed-to-pay-button{
   padding: 10px 130px;
   font-size: 12px;
-  width: 90% !important;
+  width: 100% !important;
+  margin-left: -25px;
 position: absolute;
 margin-bottom: 10px; /* Space between button and search results */
 z-index: 1000; /* Ensure it's above other elements */
