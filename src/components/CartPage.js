@@ -20,6 +20,7 @@ import {
 
 import { calculateDiscountPercentage } from "./VariantReusable.js"; // Import reusable functions
 import { useCart } from "./CartContext.js";
+import SearchResults from "./SearchResults.js";
 const CartPage = () => {
   // const [cart, setCart] = useState([]);
   // const [selectedSizes, setSelectedSizes] = useState(
@@ -124,11 +125,10 @@ const CartPage = () => {
 
       {cart.length > 0 ? (
         <>
-          {isVisible && (
-            <div style={{ marginBottom: "10px" }}>
-              {/* <ChatBox /> */}
-              <h2 className="cart-heading">
-                {/* <div className="" title="Maurya" style={{ userSelect: "none" }}>
+          <div style={{ marginBottom: "10px" }}>
+            {/* <ChatBox /> */}
+            <h2 className="cart-heading">
+              {/* <div className="" title="Maurya" style={{ userSelect: "none" }}>
                   <a href="/">
                     <img
                       src={logo}
@@ -141,264 +141,287 @@ const CartPage = () => {
                     />
                   </a>
                 </div> */}
-                <div
-                  className="logo-container"
-                  style={{
-                    userSelect: "none",
-                    textDecoration: "none",
-                    marginTop: "10px",
-                  }}
-                >
-                  <a href="/" className="gow-logo">
-                    <span className="gow-main">GOW</span>
-                    <span className="gow-full">Galaxy of Wishes</span>
-                  </a>
-                </div>
-                <span
-                  style={{ marginLeft: "50px" }}
-                  className="cart-heading-text"
-                  title="Cart Item List"
-                >
-                  Cart Items :{" "}
-                  <span className="count-style">
-                    {cart &&
-                      cart.reduce(
-                        (total, item) => total + item.variantQuantity,
-                        0
-                      )}
-                  </span>
-                  <FaSyncAlt
-                    color="#827f7f"
-                    title="Refresh"
-                    style={{
-                      marginLeft: "20px",
-                      fontSize: "15px",
-                      cursor: "pointer",
-                    }}
-                    className="refresh-button"
-                    onClick={handleRefreshPage}
-                  />
+              <div
+                className="logo-container"
+                style={{
+                  userSelect: "none",
+                  textDecoration: "none",
+                  marginTop: "10px",
+                }}
+              >
+                <a href="/" className="gow-logo">
+                  <span className="gow-main">GOW</span>
+                  <span className="gow-full">Galaxy of Wishes</span>
+                </a>
+              </div>
+              <span
+                style={{ marginLeft: "50px" }}
+                className="cart-heading-text"
+                title="Cart Item List"
+              >
+                Cart Items :{" "}
+                <span className="count-style">
+                  {cart &&
+                    cart.reduce(
+                      (total, item) => total + item.variantQuantity,
+                      0
+                    )}
                 </span>
-                <FaTrash
-                  className="clear-cart-button"
-                  style={{ fontSize: "20px", color: "white" }}
-                  title="Clear Cart"
-                  onClick={() => handleClearCart(setCart)}
+                <FaSyncAlt
+                  color="#827f7f"
+                  title="Refresh"
+                  style={{
+                    marginLeft: "20px",
+                    fontSize: "15px",
+                    cursor: "pointer",
+                  }}
+                  className="refresh-button"
+                  onClick={handleRefreshPage}
                 />
-              </h2>
-              <ul>
-                {cart.map((item, index) => {
-                  const cartItem = findCartItem(item._id);
-                  const isProductInCart = !!cartItem;
-                  const isCartQuantityMaxedVariant =
-                    isProductInCart &&
-                    item.variantQuantity >= item.variant.quantity;
-                  // Filter the product images based on the selected color
-                  const matchingImage =
-                    item.productImages &&
-                    item.productImages
-                      ?.filter(
-                        (image) =>
-                          image.color.toLowerCase() ===
-                          item.selectedColor.toLowerCase()
-                      )
-                      .find(
-                        (image) => !image?.dataURL?.startsWith("data:video/")
-                      );
-                  return (
-                    <li key={index}>
-                      <div className="cart-item-container">
+              </span>
+              <FaTrash
+                className="clear-cart-button"
+                style={{ fontSize: "20px", color: "white" }}
+                title="Clear Cart"
+                onClick={() => handleClearCart(setCart)}
+              />
+            </h2>
+            <div className="cart-page-container">
+              {/* Left Side: Cart Items (60%) */}
+              <div className="cart-items-section">
+                <ul>
+                  {cart.map((item, index) => {
+                    const cartItem = findCartItem(item._id);
+                    const isProductInCart = !!cartItem;
+                    const isCartQuantityMaxedVariant =
+                      isProductInCart &&
+                      item.variantQuantity >= item.variant.quantity;
+                    // Filter the product images based on the selected color
+                    const matchingImage =
+                      item.productImages &&
+                      item.productImages
+                        ?.filter(
+                          (image) =>
+                            image.color.toLowerCase() ===
+                            item.selectedColor.toLowerCase()
+                        )
+                        .find(
+                          (image) => !image?.dataURL?.startsWith("data:video/")
+                        );
+                    return (
+                      <li key={index}>
                         <div
-                          className="cart-image-container"
+                          className="cart-item-container"
                           style={{ width: "" }}
                         >
-                          {matchingImage ? (
-                            <img
-                              alt={item.productName}
-                              src={matchingImage.dataURL} // Display the matching image
-                              className="cart-image"
+                          <div className="cart-image-container">
+                            {matchingImage ? (
+                              <img
+                                alt={item.productName}
+                                src={matchingImage.dataURL} // Display the matching image
+                                className="cart-image"
+                                onClick={() =>
+                                  (window.location.href = `/product?id=${item._id}&color=${item.selectedColor}&size=${item.selectedSizes}`)
+                                }
+                              />
+                            ) : (
+                              <p>No image available for the selected color.</p>
+                            )}
+                          </div>
+                          <div className="cart-remove-container">
+                            <FaTrash
+                              title="Remove-Item"
+                              className="cart-remove"
                               onClick={() =>
-                                (window.location.href = `/product?id=${item._id}&color=${item.selectedColor}&size=${item.selectedSizes}`)
+                                handleRemoveWrapper(
+                                  index,
+                                  cart,
+                                  setCart,
+                                  item._id
+                                )
                               }
+                              disabled={isProcessing}
                             />
-                          ) : (
-                            <p>No image available for the selected color.</p>
-                          )}
-                        </div>
-                        <div className="cart-remove-container">
-                          <FaTrash
-                            title="Remove-Item"
-                            className="cart-remove"
-                            onClick={() =>
-                              handleRemoveWrapper(
-                                index,
-                                cart,
-                                setCart,
-                                item._id
-                              )
-                            }
-                            disabled={isProcessing}
-                          />
-                        </div>
+                          </div>
 
-                        <div className="cart-details">
-                          <Link to={`/search-results?query=${item.brandName}`}>
+                          <div className="cart-details">
+                            <Link
+                              to={`/search-results?query=${item.brandName}`}
+                            >
+                              <p>
+                                <strong
+                                  style={{ justifyContent: "space-between" }}
+                                >
+                                  Brand Name:
+                                </strong>{" "}
+                                {item.brandName}
+                              </p>
+                            </Link>
+                            <Link
+                              to={`/product?id=${item._id}&color=${item.selectedColor}&size=${item.selectedSizes}`}
+                              key={index}
+                            >
+                              <p>
+                                <strong style={{ cursor: "pointer" }}>
+                                  Model : {item.productName}(
+                                  {item.selectedColor}_{item.selectedSizes})
+                                </strong>
+                              </p>
+                            </Link>
                             <p>
-                              <strong
-                                style={{ justifyContent: "space-between" }}
-                              >
-                                Brand Name:
-                              </strong>{" "}
-                              {item.brandName}
+                              <strong>Size : </strong>
+                              {item.selectedSizes}
                             </p>
-                          </Link>
-                          <Link
-                            to={`/product?id=${item._id}&color=${item.selectedColor}&size=${item.selectedSizes}`}
-                            key={index}
-                          >
+                            {item.selectedColor && (
+                              <p>
+                                <strong>Colour :</strong> {item.selectedColor}
+                              </p>
+                            )}
                             <p>
-                              <strong style={{ cursor: "pointer" }}>
-                                Model : {item.productName}({item.selectedColor}_
-                                {item.selectedSizes})
-                              </strong>
+                              <strong>Available Stock :</strong>{" "}
+                              {item.variant?.quantity - item.variantQuantity}
                             </p>
-                          </Link>
-                          <p>
-                            <strong>Size : </strong>
-                            {item.selectedSizes}
-                          </p>
-                          {item.selectedColor && (
-                            <p>
-                              <strong>Colour :</strong> {item.selectedColor}
-                            </p>
-                          )}
-                          <p>
-                            <strong>Available Stock :</strong>{" "}
-                            {item.variant?.quantity - item.variantQuantity}
-                          </p>
-                          {calculateDiscountPercentage(
-                            item.variantMrpPrice,
-                            item.variantPrice
-                          ) > 75 && (
-                            <p className="limited-time-offer">
-                              Limited Time Deal
-                            </p>
-                          )}
-                          <span style={{ color: "red" }}>
                             {calculateDiscountPercentage(
                               item.variantMrpPrice,
                               item.variantPrice
+                            ) > 75 && (
+                              <p className="limited-time-offer">
+                                Limited Time Deal
+                              </p>
                             )}
-                            % off
-                          </span>
-                          <p>
-                            <strong>Price:</strong> {item.variantPrice}/pcs
-                          </p>
-                          <p className="mrp">
-                            <strong>MRP:</strong> ₹ {item.variantMrpPrice}
-                          </p>
-                          <div className="cart-quantity-controls">
-                            <FaMinus
-                              className={
-                                item.variantQuantity > 1
-                                  ? "cart-quantity-button minus"
-                                  : "cart-quantity-button minus disabled"
-                              }
-                              onClick={() =>
-                                item.variantQuantity > 1 &&
-                                handleRemoveFromCart2Variant(
-                                  item,
-                                  cart,
-                                  setCart,
-                                  item.selectedSizes,
-                                  setSelectedSizes,
-                                  item.selectedColor,
-                                  setIsProcessing
-                                  // item.variant.quantity,
-                                )
-                              }
-                            />
-                            <div
-                              className="cart-quantity-display"
-                              style={{
-                                userSelect: "none",
-                                pointerEvents: "none",
-                              }}
-                            >
-                              {item.variantQuantity}
+                            <span style={{ color: "red" }}>
+                              {calculateDiscountPercentage(
+                                item.variantMrpPrice,
+                                item.variantPrice
+                              )}
+                              % off
+                            </span>
+                            <p>
+                              <strong>Price:</strong> {item.variantPrice}/pcs
+                            </p>
+                            <p className="mrp">
+                              <strong>MRP:</strong> ₹ {item.variantMrpPrice}
+                            </p>
+                            <div className="cart-quantity-controls">
+                              <FaMinus
+                                className={
+                                  item.variantQuantity > 1
+                                    ? "cart-quantity-button minus"
+                                    : "cart-quantity-button minus disabled"
+                                }
+                                onClick={() =>
+                                  item.variantQuantity > 1 &&
+                                  handleRemoveFromCart2Variant(
+                                    item,
+                                    cart,
+                                    setCart,
+                                    item.selectedSizes,
+                                    setSelectedSizes,
+                                    item.selectedColor,
+                                    setIsProcessing
+                                    // item.variant.quantity,
+                                  )
+                                }
+                              />
+                              <div
+                                className="cart-quantity-display"
+                                style={{
+                                  userSelect: "none",
+                                  pointerEvents: "none",
+                                }}
+                              >
+                                {item.variantQuantity}
+                              </div>
+                              <FaPlus
+                                className="cart-quantity-button plus"
+                                onClick={() =>
+                                  !isCartQuantityMaxedVariant &&
+                                  addToCartVariant(item)
+                                }
+                                style={{
+                                  cursor: isCartQuantityMaxedVariant
+                                    ? "not-allowed"
+                                    : "pointer",
+                                  opacity: isCartQuantityMaxedVariant ? 0.5 : 1,
+                                }}
+                                title={
+                                  isCartQuantityMaxedVariant
+                                    ? `This seller has only ${item.variant.quantity} of these available. To see if more are available from another seller, go to the product detail page.`
+                                    : "Add to Cart"
+                                }
+                              />
                             </div>
-                            <FaPlus
-                              className="cart-quantity-button plus"
-                              onClick={() =>
-                                !isCartQuantityMaxedVariant &&
-                                addToCartVariant(item)
-                              }
-                              style={{
-                                cursor: isCartQuantityMaxedVariant
-                                  ? "not-allowed"
-                                  : "pointer",
-                                opacity: isCartQuantityMaxedVariant ? 0.5 : 1,
-                              }}
-                              title={
-                                isCartQuantityMaxedVariant
-                                  ? `This seller has only ${item.variant.quantity} of these available. To see if more are available from another seller, go to the product detail page.`
-                                  : "Add to Cart"
-                              }
-                            />
-                          </div>
 
-                          <div>
-                            <OfferDiscounts />
-                            {/* <SizeChart /> */}
-                            {/* <SizeGuide /> */}
+                            <div>
+                              <OfferDiscounts />
+                              {/* <SizeChart /> */}
+                              {/* <SizeGuide /> */}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-              <div></div>
-              <div className="cart-shopping-total">
-                <strong>
-                  The price and availability of items at Amazon.in are subject
-                  to change. The shopping cart is a temporary place to store a
-                  list of your items and reflects each item's most recent price.
-                </strong>
-                <div className="total-item">
-                  <strong className="label-total">
-                    SubTotal({totalQuantity} item) :
+                      </li>
+                    );
+                  })}
+                </ul>
+                {/* </div>
+                <div className="search-results-section">
+                  <SearchResults
+                    productName={cart.length > 0 ? cart[0].productName : ""}
+                  />
+                </div>
+              </div> */}
+                <div className="cart-shopping-total">
+                  <strong>
+                    The price and availability of items at Amazon.in are subject
+                    to change. The shopping cart is a temporary place to store a
+                    list of your items and reflects each item's most recent
+                    price.
                   </strong>
-                  <span className="cart-shop-total">&#8377;{SubTotal}</span>
+                  <div className="total-item">
+                    <strong className="label-total">
+                      SubTotal({totalQuantity} item) :
+                    </strong>
+                    <span className="cart-shop-total">&#8377;{SubTotal}</span>
+                  </div>
+                  <div className="total-item">
+                    <strong className="label-tax">Tax (12%) :</strong>
+                    <span className="cart-shop-total">&#8377;{Tax}</span>
+                  </div>
+                  <div className="total-item">
+                    <strong className="label">Final Amount to Pay :</strong>
+                    <span className="cart-shop-total">
+                      &#8377;{finalAmountToPay}
+                    </span>
+                  </div>
+                  <SecureTransaction />
                 </div>
-                <div className="total-item">
-                  <strong className="label-tax">Tax (12%) :</strong>
-                  <span className="cart-shop-total">&#8377;{Tax}</span>
+              </div>
+              <div className="search-results-section">
+                <div
+                  className="total-item"
+                  style={{
+                    paddingBottom: "20px",
+                  }}
+                >
+                  <strong>
+                    <button
+                      className="Proceed-to-pay-button"
+                      onClick={handleProceedToPayClick}
+                      style={{
+                        borderRadius: "30px",
+                        width: "300px",
+                      }}
+                    >
+                      Proceed to pay
+                    </button>
+                  </strong>
                 </div>
-                <div className="total-item">
-                  <strong className="label">Final Amount to Pay :</strong>
-                  <span className="cart-shop-total">
-                    &#8377;{finalAmountToPay}
-                  </span>
-                </div>
-                <SecureTransaction />
+                <SearchResults
+                  productName={cart.length > 0 ? cart[0].productName : ""}
+                  isVisibleDefault={true}
+                />
               </div>
             </div>
-          )}
-          <div
-            className="total-item"
-            style={{
-              paddingBottom: "20px",
-            }}
-          >
-            <strong>
-              <button
-                className="Proceed-to-pay-button"
-                onClick={handleProceedToPayClick}
-              >
-                Proceed to pay
-              </button>
-            </strong>
           </div>
         </>
       ) : (

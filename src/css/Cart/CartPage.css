@@ -1,11 +1,49 @@
+.cart-page-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap when screen is small */
+  gap: 20px; /* Space between cart and search results */
+  align-items: flex-start;
+}
+
+/* Cart Items (60%) */
+.cart-items-section {
+  flex: 4;
+
+}
+
+.search-results-section {
+  flex: 2;
+  max-width: 30%;
+  overflow-y: auto;
+  max-height: 600px;
+  border-left: 2px solid #ddd; /* Optional: to separate sections */
+  padding-left: 20px;
+}
+@media (max-width: 768px) {
+  .cart-page-container {
+    flex-direction: column; /* Stack cart & search results */
+    display: flex;
+    position: relative; /* Maintain layout structure */
+
+  }
+
+  .cart-items-section,
+  .search-results-section {
+    max-width: 100%; /* Take full width */
+    flex: 1; /* Equal width */
+    border-left: none; /* Remove border to avoid visual issues */
+  }
+}
 .cart-item-container {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border-radius: 20px;
   border: 1px solid #bebaba;
   padding: 12px;
   align-items: flex-start; 
   background-color: white;
+  flex-direction: row;
+
   }
 
   .cart-item:last-child {
@@ -199,8 +237,12 @@
   color: rgb(237, 236, 236);
 }
 
-
-
+.Proceed-to-pay-button{
+  position: absolute;
+margin-bottom: 10px; /* Space between button and search results */
+z-index: 1000; /* Ensure it's above other elements */
+margin-left: 15px;
+}
 
 
 @media only screen and (max-width: 600px) {
@@ -221,6 +263,11 @@
 .Proceed-to-pay-button{
   padding: 10px 130px;
   font-size: 12px;
+  width: 90% !important;
+position: absolute;
+margin-bottom: 10px; /* Space between button and search results */
+z-index: 1000; /* Ensure it's above other elements */
+
 }
   .cart-details {
     text-align: left; /* Center-align text for better readability */
