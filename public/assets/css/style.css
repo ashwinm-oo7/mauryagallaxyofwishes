@@ -59,8 +59,8 @@
 }
 
 .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
-  padding-right: var(--bs-gutter-x, 0.9rem);
-  padding-left: var(--bs-gutter-x, 0.9rem);
+  padding-right: var(--bs-gutter-x, 0.1rem);
+  padding-left: var(--bs-gutter-x, 0.1rem);
 }
 
 :root {
