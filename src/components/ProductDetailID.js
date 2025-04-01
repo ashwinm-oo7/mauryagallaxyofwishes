@@ -278,7 +278,7 @@ const ProductDetailID = ({ product, selectedColorChoose, sizeChoose }) => {
                 <div className="processing-modal">
                   <div className="spinner"></div>
                   <p>
-                    <span className="processing">Item adding</span>
+                    <span className="processing">processing</span>
                     <span className="dot">.</span>
                     <span className="dot">.</span>
                     <span className="dot">.</span>

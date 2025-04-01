@@ -368,9 +368,12 @@ h3 select{
     display: flex;
     overflow-x: auto;
     padding: 5px 0;
-    gap: 8px;
+    gap: 5px;
+    justify-content:flex-start
   }
-
+.nav{
+  flex-wrap: unset;
+}
   .product-tab-list a {
     flex: 1;
     text-align: center;
