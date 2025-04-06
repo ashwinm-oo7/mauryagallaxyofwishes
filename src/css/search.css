@@ -255,6 +255,9 @@ margin-bottom: 2px;
   .sort-title-container {
   height: 2px;
   }
+  .search-results-page h2{
+    display: none;
+  }
   .extra-small-screen-scroll{
     display: none;
     max-width: 200px; /* Adjust based on the maximum width you prefer */

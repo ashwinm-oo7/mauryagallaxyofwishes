@@ -614,7 +614,6 @@ const HomePage = () => {
               </div>
             </div>
           )}
-          {/* <ChatBox /> */}
           <header
             style={{
               position: "fixed",
@@ -747,27 +746,7 @@ const HomePage = () => {
                   </div>
                 </div>
                 <div className="col-lg-2 col-md-4 col-sm-4">
-                  <div className="footer-widget mb-30 ml-50">
-                    {/* <div className="footer-title">
-                      <h3>USEFUL LINKS</h3>
-                    </div>
-                    <div className="footer-list">
-                      <ul>
-                        <li>
-                          <a href="/#">Returns</a>
-                        </li>
-                        <li>
-                          <a href="/#">Support Policy</a>
-                        </li>
-                        <li>
-                          <a href="/#">Size guide</a>
-                        </li>
-                        <li>
-                          <a href="/#">FAQs</a>
-                        </li>
-                      </ul>
-                    </div> */}
-                  </div>
+                  <div className="footer-widget mb-30 ml-50"></div>
                 </div>
                 <div className="col-lg-2 col-md-6 col-sm-6">
                   <div className="footer-widget mb-30 ml-75">

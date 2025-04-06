@@ -21,6 +21,7 @@ import {
 import Search from "./Search";
 import { toast } from "react-toastify";
 import { useCart } from "./CartContext.js";
+import MobileMenu from "./MobileMenu.js";
 
 const Header = () => {
   const { cart, setCart, selectedSizeVariants, setSelectedSizeVariants } =
@@ -592,8 +593,8 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <div className="mobile-menu-area">
-            <div className="mobile-menu" style={{ marginTop: "-" }}>
+          {/* <div className="mobile-menu-area">
+            <div className="mobile-menu">
               <nav id="mobile-menu-active">
                 <ul className="menu-overflow">
                   {isAdmin ? (
@@ -682,7 +683,8 @@ const Header = () => {
                 </ul>
               </nav>
             </div>
-          </div>
+          </div> */}
+          <MobileMenu isAdmin={isAdmin} logout={logout} />
         </div>
       </header>
       <div className="header-search-small-display">

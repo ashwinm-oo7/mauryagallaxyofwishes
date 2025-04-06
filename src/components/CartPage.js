@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { FaTimes, FaMinus, FaPlus, FaTrash, FaSyncAlt } from "react-icons/fa";
+import { FaMinus, FaPlus, FaTrash, FaSyncAlt } from "react-icons/fa";
 import "../css/Cart/CartPage.css";
-import { SizeChart, SizeGuide, SecureTransaction } from "./OfferDetails";
+import { SecureTransaction } from "./OfferDetails";
+// import { SizeChart, SizeGuide } from "./OfferDetails";
+
 import OfferDiscounts from "./OfferDiscounts.js";
 // import ChatBox from "./ChatBox";
 // import logo from "../icons/maurya.png";
@@ -31,7 +33,6 @@ const CartPage = () => {
   const selectedSizes = selectedSizeVariants;
   const setSelectedSizes = setSelectedSizeVariants;
   const [isProcessing, setIsProcessing] = useState(false);
-  const isVisible = true;
   const navigate = useNavigate(); // Initialize useNavigate
 
   const handleProceedToPayClick = () => {
@@ -45,9 +46,9 @@ const CartPage = () => {
       },
     });
   };
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
-    const userId = localStorage.getItem("userId");
     if (userId) {
       // fetchAllCart(setCart, setSelectedSizes);
     } else {
@@ -426,11 +427,16 @@ const CartPage = () => {
         </>
       ) : (
         <>
-          <h2>Your Maurya Cart is empty.</h2>
-          <p>
-            Check your Saved for later items below or{" "}
-            <a href="/">continue shopping.</a>
-          </p>
+          <div class="cart-empty">
+            <div class="cart-empty-icon">🛒</div>
+            <h2 style={{ color: "red" }}>
+              {userId ? "Your Cart is Empty" : "Please Login"}
+            </h2>
+            <p>
+              Check your Saved for later items below or {"  "}
+              <a href="/">continue shopping.</a>
+            </p>
+          </div>
         </>
       )}
     </>

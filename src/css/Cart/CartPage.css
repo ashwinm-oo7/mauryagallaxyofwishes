@@ -290,3 +290,55 @@ z-index: 1000; /* Ensure it's above other elements */
   } */
 }
 
+/* Cart Empty Container */
+.cart-empty {
+  text-align: center;
+  padding: 50px 20px;
+  background: #68696b; /* Dark background */
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+  max-width: 500px;
+  margin: 50px auto;
+}
+
+/* Empty Cart Icon */
+.cart-empty-icon {
+  font-size: 60px;
+  color: #FF5733; /* Orange-Red */
+  margin-bottom: 15px;
+}
+
+/* Heading Style */
+.cart-empty h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  animation: blink 1s infinite;
+}
+
+/* Paragraph Style */
+.cart-empty p {
+  font-size: 16px;
+  color: #CCCCCC;
+}
+
+/* Link Styling */
+.cart-empty a {
+  color: #FF9500; /* Highlight color */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.cart-empty a:hover {
+  color: #FFD700; /* Gold on hover */
+  text-decoration: underline;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
