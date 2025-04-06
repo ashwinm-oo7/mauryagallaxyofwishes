@@ -730,6 +730,7 @@ const AddProduct = () => {
                   onChange={handleCategoryChange}
                   disabled={defaultDisabled ? true : null}
                   required
+                  className="add-product-select"
                 >
                   <option value="">Select a category</option>
                   {categoryOptions?.map((categoryName) => (
@@ -748,6 +749,7 @@ const AddProduct = () => {
                   onChange={handleSubCategoryChange}
                   disabled={defaultDisabled ? true : null}
                   required
+                  className="add-product-select"
                 >
                   <option value="">Select a subcategory</option>
                   {subCategoryOptions?.map((subcategoryName) => (
@@ -766,6 +768,7 @@ const AddProduct = () => {
                   disabled={defaultDisabled ? true : null}
                   onChange={(e) => setSelectedBrand(e.target.value)}
                   required
+                  className="add-product-select"
                 >
                   <option value="">Select a Brand</option>
                   {clothingCompanyOptions?.map((clothingCompanyName) => (
@@ -880,7 +883,11 @@ const AddProduct = () => {
                         />
                       </label>
                       <button
-                        style={{ width: "auto", marginTop: "2px" }}
+                        style={{
+                          width: "auto",
+                          marginTop: "2px",
+                          fontSize: "15px",
+                        }}
                         onClick={handleAddCustomSize}
                       >
                         Add Size

@@ -73,6 +73,25 @@ input:focus, select:focus {
   .variant-input-section {
     grid-template-columns: 1fr;
   }
+  .tab-buttons-button button {
+    margin: 0 2px !important;
+    padding: 5px 7px !important;
+    font-size: 8px !important;
+    line-height: 13cpx;
+}
+
+.add-product-select{
+  width: 90%;
+  padding: 8px;
+font-size: 10px;
+}
+input[type='text'], textarea {
+  width: 90%;
+  padding: 2px;
+  font-size: 11px;
+}
+
+
 }
 
 .size-checkbox-container {
@@ -290,6 +309,12 @@ button svg {
   .image-preview-item {
     width: 100%;
   }
+  .tab-content-brand {
+    width: 115%;
+    display: flex;
+}
+
+
 }
 
 

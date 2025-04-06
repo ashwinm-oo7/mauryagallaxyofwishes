@@ -126,6 +126,7 @@ button:hover {
   .tab-buttons {
     flex-direction: row; /* Stack buttons vertically on mobile */
     margin-bottom: 10px; /* Space between buttons */
+    line-height: 15px;
   }
 
   .tab-buttons button {

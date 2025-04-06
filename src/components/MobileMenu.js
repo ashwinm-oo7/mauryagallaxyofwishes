@@ -4,7 +4,9 @@ import {
   FaGift,
   FaHandHoldingHeart,
   FaHome,
+  FaSignOutAlt,
   FaTags,
+  FaThLarge,
   FaUser,
   FaUserShield,
 } from "react-icons/fa";
@@ -74,7 +76,7 @@ const MobileMenu = ({ isAdmin, logout }) => {
                     onClick={() => logout()}
                     style={{ backgroundColor: "rgb(255 59 59)" }}
                   >
-                    <FaUser /> Logout
+                    <FaSignOutAlt /> Logout
                   </a>
                 ) : (
                   <a
@@ -121,7 +123,8 @@ const MobileMenu = ({ isAdmin, logout }) => {
 
               <li>
                 <a href="##">
-                  Top Category for you <i className="fa fa-angle-down"></i>
+                  <FaThLarge /> Top Category for you{" "}
+                  <i className="fa fa-angle-down"></i>
                 </a>
                 <ul className="submenu">
                   <li>

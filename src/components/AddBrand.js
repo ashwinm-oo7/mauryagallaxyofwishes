@@ -201,7 +201,7 @@ const AddBrand = () => {
     <>
       {isAdmin ? (
         <div className="add-product-container">
-          <div className="tab-buttons">
+          <div className="tab-buttons tab-buttons-button">
             <button
               className={activeTab === "Categories" ? "active" : ""}
               onClick={() => setActiveTab("Categories")}
@@ -253,7 +253,7 @@ const AddBrand = () => {
                       display: "flex",
                       justifyContent: "space-between",
                       // alignItems: "center",
-                      padding: "0px 0",
+                      padding: "8px 0",
                     }}
                   >
                     <h1 className="h1">Brand</h1>
