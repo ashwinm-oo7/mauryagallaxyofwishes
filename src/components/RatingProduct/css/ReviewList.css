@@ -144,5 +144,11 @@ td.comment-cell {
       height: 25px !important;
       font-size: 9px !important;
       padding-left:2px !important;
+      padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+
     }
   }

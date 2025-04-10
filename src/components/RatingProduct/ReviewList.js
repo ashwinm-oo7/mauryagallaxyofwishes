@@ -160,7 +160,7 @@ const ReviewList = () => {
         <div className="product-list" style={{ padding: "5px" }}>
           {productId ? (
             <h2
-              className="filter"
+              className="filter review-list-h2"
               style={{
                 fontSize: "20px",
                 backgroundColor: "#074c96",
@@ -171,8 +171,9 @@ const ReviewList = () => {
             >
               Newest Reviews for Product ${productId}00{" "}
               <input
+                className="review-list-search"
                 style={{ borderRadius: "30px", maxWidth: "600px" }}
-                type="text"
+                type="search"
                 placeholder="Search by E-mail  then press enter"
                 value={searchInput}
                 onChange={handleSearchInputChange}
@@ -202,7 +203,7 @@ const ReviewList = () => {
               <input
                 className="review-list-search"
                 style={{ borderRadius: "30px", maxWidth: "600px" }}
-                type="text"
+                type="search"
                 placeholder="Search by E-mail  then press enter"
                 value={searchInput}
                 onChange={(e) => handleSearchInputChange(e)}
