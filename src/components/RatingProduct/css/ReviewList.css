@@ -130,3 +130,19 @@ td.comment-cell {
     transform: translateX(26px);
   }
   
+  @media (max-width: 768px) {
+    .review-list-h2 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 2px;
+        font-size: 11px !important;
+        padding-left: 1px !important;
+        justify-content:space-between;
+      }
+      .review-list-search{
+      height: 25px !important;
+      font-size: 9px !important;
+      padding-left:2px !important;
+    }
+  }

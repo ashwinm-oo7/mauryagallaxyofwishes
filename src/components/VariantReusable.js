@@ -195,8 +195,13 @@ export const handleSearchKeyPress = (
   e.preventDefault();
 
   const trimmedSearchInput = searchInput.trim(); // Trim the input here
+  const isEnterKey =
+    e.key === "Enter" ||
+    e.code === "Enter" ||
+    e.keyCode === 13 ||
+    e.which === 13;
 
-  if (trimmedSearchInput) {
+  if (isEnterKey && trimmedSearchInput) {
     const searchFields = [
       "_id",
       "categoryName",

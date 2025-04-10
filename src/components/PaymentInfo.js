@@ -132,7 +132,8 @@ const PaymentInfo = () => {
                   placeholder="Search by OrderID and EmailId then press enter"
                   value={searchInput}
                   onChange={handleSearchInputChange}
-                  onKeyPress={(e) =>
+                  onKeyDown={(e) =>
+                    e.key === "Enter" &&
                     handleSearchKeyPress(
                       e,
                       paymentInfo,

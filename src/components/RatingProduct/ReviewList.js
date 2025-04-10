@@ -190,7 +190,7 @@ const ReviewList = () => {
             </h2>
           ) : (
             <h2
-              className="filter"
+              className="filter review-list-h2"
               style={{
                 fontSize: "20px",
                 backgroundColor: "#074c96",
@@ -198,14 +198,16 @@ const ReviewList = () => {
                 fontWeight: "bold",
               }}
             >
-              Newest of All Reviews{" "}
+              Newest of All Reviews{"   "}
               <input
+                className="review-list-search"
                 style={{ borderRadius: "30px", maxWidth: "600px" }}
                 type="text"
                 placeholder="Search by E-mail  then press enter"
                 value={searchInput}
-                onChange={handleSearchInputChange}
-                onKeyPress={(e) =>
+                onChange={(e) => handleSearchInputChange(e)}
+                onKeyDown={(e) =>
+                  e.key === "Enter" &&
                   handleSearchKeyPress(
                     e,
                     filteredReviews,
