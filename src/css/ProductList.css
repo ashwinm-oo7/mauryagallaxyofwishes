@@ -153,6 +153,7 @@ input:checked + .slider:before {
   width: 70% !important;
   margin-bottom: 8px;
   margin-left: 15px !important;
+  font-size: 9px !important;
 }
 
   /* Hide unnecessary columns */
@@ -175,7 +176,7 @@ input:checked + .slider:before {
   }
 
   .Variant-Label {
-    width: 100%;
+    width: 140px !important;
     display: block;
     font-size: 14px;
   }

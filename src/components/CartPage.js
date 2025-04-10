@@ -427,8 +427,8 @@ const CartPage = () => {
         </>
       ) : (
         <>
-          <div class="cart-empty">
-            <div class="cart-empty-icon">🛒</div>
+          <div className="cart-empty">
+            <div className="cart-empty-icon">🛒</div>
             <h2 style={{ color: "red" }}>
               {userId ? "Your Cart is Empty" : "Please Login"}
             </h2>

@@ -33,17 +33,18 @@
     }
       
     .menu-toggle-btn-fixed {
-        position: fixed;
+        /* position: fixed;
         top: 15px;
-        right: 20px;
-        /* position: absolute;
-        top: -39px;
-        right: 1px; */
+        right: 20px; */
+        position: absolute;
+        top: -43px;
+        right: 5px;
         z-index: 101;
-        font-size: 28px;
+        font-size: 26px;
         background: none;
         border: none;
-        color: #333;
+        color: whitesmoke;
+        font-weight: bold;
         cursor: pointer;
       }
   

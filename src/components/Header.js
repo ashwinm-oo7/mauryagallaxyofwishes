@@ -397,7 +397,7 @@ const Header = () => {
 
                   <button className="icon-cart">
                     <i
-                      class="fa fa-shopping-cart"
+                      className="fa fa-shopping-cart"
                       style={{ color: "whitesmoke" }}
                       onClick={() => (window.location.href = `/cart-page`)}
                     ></i>
@@ -686,10 +686,10 @@ const Header = () => {
           </div> */}
           <MobileMenu isAdmin={isAdmin} logout={logout} />
         </div>
+        <div className="header-search-small-display sticky-bar stick">
+          <Search />
+        </div>
       </header>
-      <div className="header-search-small-display">
-        <Search />
-      </div>
     </div>
   );
 };

@@ -2114,7 +2114,7 @@ a.default-btn {
 }
 @media only screen and (max-width: 767px) {
   .header-res-padding {
-    padding: 20px 0 15px;
+    padding: 25px 0 2px;
   }
 }
 
