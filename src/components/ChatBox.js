@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { FaMicrophone } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const ChatBox = () => {
   const [messages, setMessages] = useState([]);
@@ -7,12 +9,16 @@ const ChatBox = () => {
   const [isOpen, setIsOpen] = useState(false); // State to toggle chat box visibility
   const chatBoxRef = useRef(null);
   const messagesEndRef = useRef(null);
+  const [isListening, setIsListening] = useState(false);
 
   useEffect(() => {
     const socket = new WebSocket(process.env.REACT_APP_API_URL_WS);
     console.log(socket);
     socket.onopen = () => {
-      console.log("WebSocket connection established");
+      console.log(
+        "WebSocket connection established",
+        process.env.REACT_APP_API_URL_WS
+      );
       setWs(socket);
     };
 
@@ -24,6 +30,7 @@ const ChatBox = () => {
         text: response,
         sender: "bot",
       }));
+
       setMessages((prevMessages) => [...prevMessages, ...newMessages]);
     };
 
@@ -35,6 +42,12 @@ const ChatBox = () => {
       socket.close();
     };
   }, []);
+  const linkify = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, (url) => {
+      return `<a href="${url}" target="_blank" rel="noopener noreferrer" style="color: #007bff;">${url}</a>`;
+    });
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -73,6 +86,43 @@ const ChatBox = () => {
     if (event.key === "Enter") {
       handleSend();
     }
+  };
+  const handleVoiceInput = () => {
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert("Sorry, your browser does not support Speech Recognition.");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.start();
+
+    recognition.onstart = () => {
+      setIsListening(true);
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+
+    recognition.onresult = (event) => {
+      const spokenText = event.results[0][0].transcript;
+      console.log("Voice Input:", spokenText);
+      setInput(spokenText); // optional: display in input
+      const userMessage = { text: spokenText, sender: "user" };
+      setMessages((prev) => [...prev, userMessage]);
+      if (ws) ws.send(spokenText);
+    };
+
+    recognition.onerror = (event) => {
+      setIsListening(false);
+      console.error("Speech recognition error:", event.error);
+    };
   };
 
   return (
@@ -146,27 +196,46 @@ const ChatBox = () => {
                     boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
                   }}
                 >
-                  <strong>{msg.sender === "user" ? "You" : "Bot"}:</strong>{" "}
-                  {msg.text}
+                  {/* <strong>{msg.sender === "user" ? "You" : "Bot"}:</strong>{" "} */}
+                  {/* {msg.text} */}
+                  <span
+                    dangerouslySetInnerHTML={{ __html: linkify(msg.text) }}
+                  />
                 </p>
               </div>
             ))}
             <div ref={messagesEndRef} />
           </div>
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask a question..."
-            onKeyDown={handleKeyPress}
-            style={{ width: "100%", padding: "5px" }}
-          />
-          <button
-            onClick={handleSend}
-            style={{ width: "100%", padding: "5px" }}
-          >
-            Send
-          </button>
+          <div style={{ display: "", gap: "" }}>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask a question..."
+              onKeyDown={handleKeyPress}
+              style={{ width: "100%", padding: "5px" }}
+            />
+            <FaMicrophone
+              onClick={handleVoiceInput}
+              style={{
+                position: "absolute",
+                right: "15px",
+                top: "77%",
+                transform: "translateY(-50%)",
+                border: "none",
+                backgroundColor: "transparent",
+                color: isListening ? "#727272" : "#ccc",
+                cursor: "pointer",
+              }}
+              title="Click to Speak"
+            />
+            <button
+              onClick={handleSend}
+              style={{ width: "100%", padding: "5px" }}
+            >
+              Send
+            </button>
+          </div>{" "}
         </div>
       )}
     </div>
