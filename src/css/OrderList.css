@@ -11,6 +11,7 @@
   text-align: center;
   margin-bottom: 20px;
   color: #333;
+  font-weight:revert
 }
 
 .order-details {
@@ -54,9 +55,20 @@
   font-size: 18px;
   color: #888;
 }
+.status-flow {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  font-size: 0.9rem;
+}
 
 /* Responsive Styles */
 @media only screen and (max-width: 768px) {
+  .status-flow {
+
+    gap: 10px;
+    font-size: 0.7rem;
+  }
   .order-list-container {
     padding: 15px;
   }
@@ -120,6 +132,7 @@
     content: "Created At";
   }
 }
+
 
 /* Desktop Styles */
 @media only screen and (min-width: 769px) {

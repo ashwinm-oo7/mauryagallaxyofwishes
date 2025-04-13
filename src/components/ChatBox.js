@@ -213,7 +213,7 @@ const ChatBox = () => {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask a question..."
               onKeyDown={handleKeyPress}
-              style={{ width: "100%", padding: "5px" }}
+              style={{ width: "100%", padding: "5px", paddingRight: "30px" }}
             />
             <FaMicrophone
               onClick={handleVoiceInput}
@@ -224,8 +224,9 @@ const ChatBox = () => {
                 transform: "translateY(-50%)",
                 border: "none",
                 backgroundColor: "transparent",
-                color: isListening ? "#727272" : "#ccc",
+                color: isListening ? "#727274" : "rgb(155 155 155)",
                 cursor: "pointer",
+                fontSize: "17px",
               }}
               title="Click to Speak"
             />

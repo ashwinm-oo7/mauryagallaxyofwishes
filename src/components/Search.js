@@ -69,6 +69,7 @@ export default function Search(props) {
             marginLeft: "20px",
             backgroundColor: "white",
             paddingLeft: "10px",
+            paddingRight: "30px",
           }}
           type="text"
           placeholder="Search type then press enter"

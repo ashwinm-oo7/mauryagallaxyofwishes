@@ -26,6 +26,7 @@ const ProceedToPay = () => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [userEmail] = useState(localStorage.getItem("userEmail"));
   const [userId] = useState(localStorage.getItem("userId"));
+  const phoneNumber = localStorage.getItem("phoneNumber");
   // const [showForm, setShowForm] = useState(true);
   // const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [cvv, setCvv] = useState("");
@@ -241,6 +242,7 @@ const ProceedToPay = () => {
           },
           body: JSON.stringify({
             ...(userEmail && { userEmail }),
+            ...(phoneNumber && { phoneNumber }),
             ...(deliveryAddress && { deliveryAddress }),
             ...(paymentMethod && { paymentMethod }),
             ...(totalQuantity && { totalQuantity }),
