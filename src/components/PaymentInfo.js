@@ -11,12 +11,12 @@ const PaymentInfo = () => {
   const [hide, setHide] = useState(true);
   const [orderId, setOrderId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const orderId = urlParams.get("id");
 
-    if (localStorage.getItem("userEmail")) {
+    if (isAdmin) {
       if (orderId) {
         fetchPaymentInfoById(orderId);
         setOrderId(orderId);
@@ -26,6 +26,7 @@ const PaymentInfo = () => {
     } else {
       window.location.href = "/login";
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchPaymentInfoById = async (id) => {

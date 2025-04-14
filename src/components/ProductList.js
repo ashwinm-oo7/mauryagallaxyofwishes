@@ -272,7 +272,7 @@ const ProductList = () => {
                 alignItems: "center",
                 padding: "5px",
                 cursor: "pointer",
-                fontSize: "14px",
+                fontSize: "16px",
                 backgroundColor: "#074c96",
                 color: "#bebaba",
                 fontWeight: "bold",
@@ -282,7 +282,11 @@ const ProductList = () => {
               }}
               className="product-list-h2"
             >
-              <span title="refresh the list" onClick={fetchAllProducts}>
+              <span
+                title="refresh the list"
+                onClick={fetchAllProducts}
+                style={{ fontSize: "20px" }}
+              >
                 Product List
               </span>
 

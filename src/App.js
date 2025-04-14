@@ -82,6 +82,10 @@ const Home = (props) => {
                 <Route path="/login-record" element={<LoginRecords />} />
                 <Route path="/order-list" element={<OrderList />} />
                 <Route path="/review-list" element={<ReviewList />} />
+                <Route
+                  path="payment-info"
+                  element={<PaymentInfo history={history} />}
+                />
               </>
             )}
             <Route path="proceedToPay" element={<ProceedToPay />} />
@@ -96,10 +100,6 @@ const Home = (props) => {
 
             <Route path="*" element={<Login />} />
             <Route path="MainPopup" element={<MainPopup />} />
-            <Route
-              path="payment-info"
-              element={<PaymentInfo history={history} />}
-            />
 
             <Route path="/pdf-download" element={<PdfDownload />} />
 

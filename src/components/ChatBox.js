@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaMicrophone } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 
 const ChatBox = () => {
   const [messages, setMessages] = useState([]);
