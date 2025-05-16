@@ -23,6 +23,9 @@ import {
 import { calculateDiscountPercentage } from "./VariantReusable.js"; // Import reusable functions
 import { useCart } from "./CartContext.js";
 import SearchResults from "./SearchResults.js";
+import { CopilotKit } from "@copilotkit/react-core";
+import { useCopilotAction, CopilotSidebar } from "@copilotkit/react-ui";
+
 const CartPage = () => {
   // const [cart, setCart] = useState([]);
   // const [selectedSizes, setSelectedSizes] = useState(

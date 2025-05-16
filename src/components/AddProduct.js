@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import "../css/ProductImage.css";
 import { FaTimes, FaHome, FaEdit, FaTrash } from "react-icons/fa";
+import { createCopilotAction } from "@copilotkit/react-core";
 
 const fileToBase64 = (file) => {
   return new Promise((resolve, reject) => {
